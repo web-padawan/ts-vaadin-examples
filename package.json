@@ -1,0 +1,48 @@
+{
+  "name": "ts-vaadin-demo",
+  "version": "0.1.0",
+  "author": "Vaadin Ltd",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/web-padawan/ts-vaadin-demo.git"
+  },
+  "dependencies": {
+    "@vaadin/router": "^1.7.2",
+    "@vaadin/vaadin-app-layout": "~2.2.0-alpha1",
+    "@vaadin/vaadin-button": "~2.4.0-alpha1",
+    "@vaadin/vaadin-checkbox": "~2.3.0",
+    "@vaadin/vaadin-combo-box": "~5.3.0-alpha3",
+    "@vaadin/vaadin-context-menu": "~4.5.0-alpha1",
+    "@vaadin/vaadin-date-picker": "~4.3.0-alpha3",
+    "@vaadin/vaadin-dialog": "~2.5.0-alpha1",
+    "@vaadin/vaadin-grid": "~5.7.0-alpha2",
+    "@vaadin/vaadin-item": "~2.3.0-alpha1",
+    "@vaadin/vaadin-list-box": "~1.4.0-alpha1",
+    "@vaadin/vaadin-lumo-styles": "^1.6.0",
+    "@vaadin/vaadin-notification": "~1.6.0-alpha1",
+    "@vaadin/vaadin-select": "~2.3.0-alpha3",
+    "@vaadin/vaadin-tabs": "~3.2.0-alpha1",
+    "@vaadin/vaadin-text-field": "~2.7.0-alpha4",
+    "@vaadin/vaadin-time-picker": "~2.3.0-alpha3",
+    "lit-element": "^2.3.1"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "5.2.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "connect-history-api-fallback": "^1.6.0",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
+    "serve-static": "^1.14.1",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "scripts": {
+    "build": "webpack --env production",
+    "dev": "webpack-dev-server --env development",
+    "start": "node server.js"
+  }
+}
