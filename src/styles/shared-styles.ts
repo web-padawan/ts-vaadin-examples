@@ -2,6 +2,7 @@ import { css } from 'lit-element';
 
 export const sharedStyles = css`
   :host {
+    display: block;
     font-family: var(--lumo-font-family);
   }
 

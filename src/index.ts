@@ -41,8 +41,11 @@ class DemoApp extends LitElement {
         <div main-title slot="navbar">TS examples</div>
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
+          <vaadin-tab>
+              <a href="/combo-box-data-provider">ComboBox data provider</a>
+            </vaadin-tab>
             <vaadin-tab>
-              <a href="/combo-box">ComboBox</a>
+              <a href="/combo-box-renderer">ComboBox item renderer</a>
             </vaadin-tab>
             <vaadin-tab>
               <a href="/grid">Grid</a>
@@ -64,10 +67,17 @@ class DemoApp extends LitElement {
         redirect: '/grid'
       },
       {
-        path: '/combo-box',
-        component: 'combo-box-demo',
+        path: '/combo-box-renderer',
+        component: 'combo-box-renderer-demo',
         action: () => {
-          import(/* webpackChunkName: "combo-box" */ './views/combo-box-demo');
+          import(/* webpackChunkName: "combo-box" */ './views/combo-box-renderer-demo');
+        }
+      },
+      {
+        path: '/combo-box-data-provider',
+        component: 'combo-box-data-provider-demo',
+        action: () => {
+          import(/* webpackChunkName: "combo-box" */ './views/combo-box-data-provider-demo');
         }
       },
       {
@@ -91,11 +101,14 @@ class DemoApp extends LitElement {
 
   private _onLocationChanged(e: CustomEvent) {
     switch (e.detail.location.pathname) {
-      case '/combo-box':
+      case '/combo-box-data-provider':
         this.selected = 0;
         break;
-      case '/grid':
+      case '/combo-box-renderer':
         this.selected = 1;
+        break;
+      case '/grid':
+        this.selected = 2;
         break;
       default:
         this.selected = null;
