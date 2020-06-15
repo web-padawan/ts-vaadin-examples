@@ -48,6 +48,9 @@ class DemoApp extends LitElement {
               <a href="/combo-box-renderer">ComboBox item renderer</a>
             </vaadin-tab>
             <vaadin-tab>
+              <a href="/grid-cell-class-name-generator">Grid cell class generator</a>
+            </vaadin-tab>
+            <vaadin-tab>
               <a href="/grid-column-renderer">Grid column renderer</a>
             </vaadin-tab>
             <vaadin-tab>
@@ -84,6 +87,13 @@ class DemoApp extends LitElement {
         }
       },
       {
+        path: '/grid-cell-class-name-generator',
+        component: 'grid-cell-class-name-generator-demo',
+        action: () => {
+          import(/* webpackChunkName: "grid-cell-class-name-generator" */ './views/grid-cell-class-name-generator-demo');
+        }
+      },
+      {
         path: '/grid-column-renderer',
         component: 'grid-column-renderer-demo',
         action: () => {
@@ -117,11 +127,14 @@ class DemoApp extends LitElement {
       case '/combo-box-renderer':
         this.selected = 1;
         break;
-      case '/grid-column-renderer':
+      case '/grid-cell-class-name-generator':
         this.selected = 2;
         break;
-      case '/grid-row-details':
+      case '/grid-column-renderer':
         this.selected = 3;
+        break;
+      case '/grid-row-details':
+        this.selected = 4;
         break;
       default:
         this.selected = null;
