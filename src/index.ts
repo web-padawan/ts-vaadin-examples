@@ -42,6 +42,9 @@ class DemoApp extends LitElement {
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
             <vaadin-tab>
+              <a href="/combo-box">ComboBox</a>
+            </vaadin-tab>
+            <vaadin-tab>
               <a href="/grid">Grid</a>
             </vaadin-tab>
           </vaadin-tabs>
@@ -59,6 +62,13 @@ class DemoApp extends LitElement {
       {
         path: '/',
         redirect: '/grid'
+      },
+      {
+        path: '/combo-box',
+        component: 'combo-box-demo',
+        action: () => {
+          import(/* webpackChunkName: "combo-box" */ './views/combo-box-demo');
+        }
       },
       {
         path: '/grid',
@@ -81,8 +91,11 @@ class DemoApp extends LitElement {
 
   private _onLocationChanged(e: CustomEvent) {
     switch (e.detail.location.pathname) {
-      case '/grid':
+      case '/combo-box':
         this.selected = 0;
+        break;
+      case '/grid':
+        this.selected = 1;
         break;
       default:
         this.selected = null;
