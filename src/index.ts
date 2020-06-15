@@ -41,14 +41,17 @@ class DemoApp extends LitElement {
         <div main-title slot="navbar">TS examples</div>
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
-          <vaadin-tab>
+            <vaadin-tab>
               <a href="/combo-box-data-provider">ComboBox data provider</a>
             </vaadin-tab>
             <vaadin-tab>
               <a href="/combo-box-renderer">ComboBox item renderer</a>
             </vaadin-tab>
             <vaadin-tab>
-              <a href="/grid">Grid</a>
+              <a href="/grid-column-renderer">Grid column renderer</a>
+            </vaadin-tab>
+            <vaadin-tab>
+              <a href="/grid-row-details">Grid row details renderer</a>
             </vaadin-tab>
           </vaadin-tabs>
         </section>
@@ -64,27 +67,34 @@ class DemoApp extends LitElement {
     router.setRoutes([
       {
         path: '/',
-        redirect: '/grid'
+        redirect: '/combo-box-data-provider'
       },
       {
         path: '/combo-box-renderer',
         component: 'combo-box-renderer-demo',
         action: () => {
-          import(/* webpackChunkName: "combo-box" */ './views/combo-box-renderer-demo');
+          import(/* webpackChunkName: "combo-box-renderer" */ './views/combo-box-renderer-demo');
         }
       },
       {
         path: '/combo-box-data-provider',
         component: 'combo-box-data-provider-demo',
         action: () => {
-          import(/* webpackChunkName: "combo-box" */ './views/combo-box-data-provider-demo');
+          import(/* webpackChunkName: "combo-box-data-provider" */ './views/combo-box-data-provider-demo');
         }
       },
       {
-        path: '/grid',
-        component: 'grid-demo',
+        path: '/grid-column-renderer',
+        component: 'grid-column-renderer-demo',
         action: () => {
-          import(/* webpackChunkName: "grid" */ './views/grid-demo');
+          import(/* webpackChunkName: "grid-column-renderer" */ './views/grid-column-renderer-demo');
+        }
+      },
+      {
+        path: '/grid-row-details',
+        component: 'grid-row-details-demo',
+        action: () => {
+          import(/* webpackChunkName: "grid-row-details" */ './views/grid-row-details-demo');
         }
       },
       {
@@ -107,8 +117,11 @@ class DemoApp extends LitElement {
       case '/combo-box-renderer':
         this.selected = 1;
         break;
-      case '/grid':
+      case '/grid-column-renderer':
         this.selected = 2;
+        break;
+      case '/grid-row-details':
+        this.selected = 3;
         break;
       default:
         this.selected = null;
