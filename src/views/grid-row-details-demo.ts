@@ -31,13 +31,11 @@ class GridRowDetailsDemo extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <vaadin-grid .items="${this.users}" .rowDetailsRenderer="${this.rowDetailsRenderer}">
-          <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
-          <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
-          <vaadin-grid-column .renderer="${this._boundToggleDetailsRenderer}"></vaadin-grid-column>
-        </vaadin-grid>
-      </div>
+      <vaadin-grid .items="${this.users}" .rowDetailsRenderer="${this.rowDetailsRenderer}">
+        <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
+        <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
+        <vaadin-grid-column .renderer="${this._boundToggleDetailsRenderer}"></vaadin-grid-column>
+      </vaadin-grid>
     `;
   }
 

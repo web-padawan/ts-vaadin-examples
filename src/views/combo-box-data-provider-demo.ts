@@ -13,9 +13,7 @@ class ComboBoxDataProviderDemo extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <vaadin-combo-box label="Country"></vaadin-combo-box>
-      </div>
+      <vaadin-combo-box label="Country"></vaadin-combo-box>
     `;
   }
 

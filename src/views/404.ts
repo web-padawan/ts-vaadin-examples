@@ -6,10 +6,6 @@ class Demo404 extends LitElement {
     return [
       sharedStyles,
       css`
-        :host {
-          display: block;
-        }
-
         h2 {
           margin: var(--lumo-space-m) 0;
         }
@@ -19,10 +15,8 @@ class Demo404 extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <h2>404</h2>
-        <p>Page not found.</p>
-      </div>
+      <h2>404</h2>
+      <p>Page not found.</p>
     `;
   }
 }

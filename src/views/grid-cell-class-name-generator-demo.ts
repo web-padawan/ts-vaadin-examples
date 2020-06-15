@@ -15,14 +15,12 @@ class GridCellClassNameGeneratorDemo extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <vaadin-grid .items="${this.users}" .cellClassNameGenerator="${this.cellClassGenerator}">
-          <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
-          <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
-          <vaadin-grid-column path="address.phone" header="Phone"></vaadin-grid-column>
-          <vaadin-grid-column path="email" header="Email"></vaadin-grid-column>
-        </vaadin-grid>
-      </div>
+      <vaadin-grid .items="${this.users}" .cellClassNameGenerator="${this.cellClassGenerator}">
+        <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
+        <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
+        <vaadin-grid-column path="address.phone" header="Phone"></vaadin-grid-column>
+        <vaadin-grid-column path="email" header="Email"></vaadin-grid-column>
+      </vaadin-grid>
     `;
   }
 

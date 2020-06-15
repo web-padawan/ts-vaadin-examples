@@ -28,15 +28,13 @@ class GridColumnRendererDemo extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <vaadin-grid .items="${this.users}">
-          <vaadin-grid-column width="50px" flex-grow="0" header="#" .renderer="${this.indexRenderer}"></vaadin-grid-column>
-          <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
-          <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
-          <vaadin-grid-column width="150px" header="Address" .renderer="${this.addressRenderer}"></vaadin-grid-column>
-          <vaadin-grid-column width="150px" path="email" .headerRenderer="${this.emailHeaderRenderer}"></vaadin-grid-column>
-        </vaadin-grid>
-      </div>
+      <vaadin-grid .items="${this.users}">
+        <vaadin-grid-column width="50px" flex-grow="0" header="#" .renderer="${this.indexRenderer}"></vaadin-grid-column>
+        <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
+        <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
+        <vaadin-grid-column width="150px" header="Address" .renderer="${this.addressRenderer}"></vaadin-grid-column>
+        <vaadin-grid-column width="150px" path="email" .headerRenderer="${this.emailHeaderRenderer}"></vaadin-grid-column>
+      </vaadin-grid>
     `;
   }
 

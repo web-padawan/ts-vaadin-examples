@@ -18,15 +18,13 @@ class ComboBoxRendererDemo extends LitElement {
 
   render() {
     return html`
-      <div class="card">
-        <vaadin-combo-box
-          label="User"
-          .items="${this.users}"
-          .renderer="${this.itemRenderer}"
-          item-value-path="lastName"
-          item-label-path="lastName"
-        ></vaadin-combo-box>
-      </div>
+      <vaadin-combo-box
+        label="User"
+        .items="${this.users}"
+        .renderer="${this.itemRenderer}"
+        item-value-path="lastName"
+        item-label-path="lastName"
+      ></vaadin-combo-box>
     `;
   }
 
