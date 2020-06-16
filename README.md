@@ -8,9 +8,12 @@ The following examples are available:
 
 - [ComboBox data provider](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/combo-box-data-provider-demo.ts)
 - [ComboBox item renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/combo-box-renderer-demo.ts)
+- [Dialog renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/dialog-renderer-demo.ts)
 - [Grid cell class generator](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-cell-class-name-generator-demo.ts)
 - [Grid column renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-column-renderer-demo.ts)
 - [Grid row details renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-row-details-demo.ts)
+- [Notification renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/notification-renderer-demo.ts)
+- [Select renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/select-renderer-demo.ts)
 
 ## Setup
 
