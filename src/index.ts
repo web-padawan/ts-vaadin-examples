@@ -57,6 +57,9 @@ class DemoApp extends LitElement {
               <a href="/grid-row-details">Grid row details renderer</a>
             </vaadin-tab>
             <vaadin-tab>
+              <a href="/notification-renderer">Notification renderer</a>
+            </vaadin-tab>
+            <vaadin-tab>
               <a href="/select-renderer">Select renderer</a>
             </vaadin-tab>
           </vaadin-tabs>
@@ -111,6 +114,13 @@ class DemoApp extends LitElement {
         }
       },
       {
+        path: '/notification-renderer',
+        component: 'notification-renderer-demo',
+        action: () => {
+          import(/* webpackChunkName: "notification-renderer" */ './views/notification-renderer-demo');
+        }
+      },
+      {
         path: '/select-renderer',
         component: 'select-renderer-demo',
         action: () => {
@@ -146,8 +156,11 @@ class DemoApp extends LitElement {
       case '/grid-row-details':
         this.selected = 4;
         break;
-      case '/select-renderer':
+      case '/notification-renderer':
         this.selected = 5;
+        break;
+      case '/select-renderer':
+        this.selected = 6;
         break;
       default:
         this.selected = null;
