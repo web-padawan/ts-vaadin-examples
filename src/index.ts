@@ -6,6 +6,7 @@ import '@vaadin/vaadin-lumo-styles/typography.js';
 import '@vaadin/vaadin-app-layout/vaadin-app-layout.js';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js';
 import '@vaadin/vaadin-tabs/vaadin-tabs.js';
+import { demos } from './demos';
 
 class DemoApp extends LitElement {
   @property({ type: Number }) selected: number | null = 0;
@@ -41,30 +42,13 @@ class DemoApp extends LitElement {
         <div main-title slot="navbar">TS examples</div>
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
-            <vaadin-tab>
-              <a href="/combo-box-data-provider">ComboBox data provider</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/combo-box-renderer">ComboBox item renderer</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/dialog-renderer">Dialog renderer</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/grid-cell-class-name-generator">Grid cell class generator</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/grid-column-renderer">Grid column renderer</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/grid-row-details">Grid row details renderer</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/notification-renderer">Notification renderer</a>
-            </vaadin-tab>
-            <vaadin-tab>
-              <a href="/select-renderer">Select renderer</a>
-            </vaadin-tab>
+            ${demos.map(({ demo, title }) => {
+              return html`
+                <vaadin-tab>
+                  <a href="/${demo}">${title}</a>
+                </vaadin-tab>
+              `;
+            })}
           </vaadin-tabs>
         </section>
         <main id="outlet"></main>
@@ -75,68 +59,23 @@ class DemoApp extends LitElement {
   firstUpdated() {
     const outlet = this.renderRoot.querySelector('#outlet') as HTMLElement;
 
+    const demoRoutes = demos.map(({ demo }) => {
+      return {
+        path: `/${demo}`,
+        component: `${demo}-demo`,
+        action: () => {
+          import(`./views/${demo}-demo`);
+        }
+      }
+    });
+
     const router = new Router(outlet);
     router.setRoutes([
       {
         path: '/',
-        redirect: '/combo-box-data-provider'
+        redirect: `/${demos[0].demo}`
       },
-      {
-        path: '/combo-box-renderer',
-        component: 'combo-box-renderer-demo',
-        action: () => {
-          import(/* webpackChunkName: "combo-box-renderer" */ './views/combo-box-renderer-demo');
-        }
-      },
-      {
-        path: '/combo-box-data-provider',
-        component: 'combo-box-data-provider-demo',
-        action: () => {
-          import(/* webpackChunkName: "combo-box-data-provider" */ './views/combo-box-data-provider-demo');
-        }
-      },
-      {
-        path: '/dialog-renderer',
-        component: 'dialog-renderer-demo',
-        action: () => {
-          import(/* webpackChunkName: "dialog-renderer" */ './views/dialog-renderer-demo');
-        }
-      },
-      {
-        path: '/grid-cell-class-name-generator',
-        component: 'grid-cell-class-name-generator-demo',
-        action: () => {
-          import(/* webpackChunkName: "grid-cell-class-name-generator" */ './views/grid-cell-class-name-generator-demo');
-        }
-      },
-      {
-        path: '/grid-column-renderer',
-        component: 'grid-column-renderer-demo',
-        action: () => {
-          import(/* webpackChunkName: "grid-column-renderer" */ './views/grid-column-renderer-demo');
-        }
-      },
-      {
-        path: '/grid-row-details',
-        component: 'grid-row-details-demo',
-        action: () => {
-          import(/* webpackChunkName: "grid-row-details" */ './views/grid-row-details-demo');
-        }
-      },
-      {
-        path: '/notification-renderer',
-        component: 'notification-renderer-demo',
-        action: () => {
-          import(/* webpackChunkName: "notification-renderer" */ './views/notification-renderer-demo');
-        }
-      },
-      {
-        path: '/select-renderer',
-        component: 'select-renderer-demo',
-        action: () => {
-          import(/* webpackChunkName: "select-renderer" */ './views/select-renderer-demo');
-        }
-      },
+      ...demoRoutes,
       {
         path: '(.*)+',
         component: 'demo-404',
@@ -150,34 +89,7 @@ class DemoApp extends LitElement {
   }
 
   private _onLocationChanged(e: CustomEvent) {
-    switch (e.detail.location.pathname) {
-      case '/combo-box-data-provider':
-        this.selected = 0;
-        break;
-      case '/combo-box-renderer':
-        this.selected = 1;
-        break;
-      case '/dialog-renderer':
-        this.selected = 2;
-        break;
-      case '/grid-cell-class-name-generator':
-        this.selected = 3;
-        break;
-      case '/grid-column-renderer':
-        this.selected = 4;
-        break;
-      case '/grid-row-details':
-        this.selected = 5;
-        break;
-      case '/notification-renderer':
-        this.selected = 6;
-        break;
-      case '/select-renderer':
-        this.selected = 7;
-        break;
-      default:
-        this.selected = null;
-    }
+    this.selected = demos.findIndex(({ demo }) => e.detail.location.pathname === `/${demo}`);
   }
 }
 
