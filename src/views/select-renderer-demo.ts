@@ -1,4 +1,4 @@
-import { LitElement, html, property } from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import { render } from 'lit-html';
 import '@vaadin/vaadin-select/vaadin-select.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
@@ -15,8 +15,6 @@ type Status = {
 }
 
 class SelectRendererDemo extends LitElement {
-  @property({ type: Array }) users = [];
-
   private _boundSelectRenderer = this._selectRenderer.bind(this);
 
   static get styles() {
