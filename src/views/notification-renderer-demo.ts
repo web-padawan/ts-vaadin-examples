@@ -24,12 +24,18 @@ class NotificationRendererDemo extends LitElement {
         .renderer=${this._boundNotificationRenderer}
         position="top-start"
         duration="-1"
+        @opened-changed="${this._onOpenedChanged}"
       ></vaadin-notification>
     `;
   }
 
   _notificationRenderer(root: HTMLElement, _notification: NotificationElement) {
     render(html`<b>Hello world!</b>`, root);
+  }
+
+  _onOpenedChanged(e: CustomEvent) {
+    // upward property binding
+    this.opened = e.detail.value;
   }
 
   _toggle() {
