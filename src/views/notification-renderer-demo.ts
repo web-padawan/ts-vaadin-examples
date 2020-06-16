@@ -39,7 +39,7 @@ class NotificationRendererDemo extends LitElement {
   }
 
   _toggle() {
-    this.opened = !this.opened
+    this.opened = !this.opened;
   }
 }
 

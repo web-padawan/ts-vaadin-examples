@@ -34,9 +34,7 @@ class DialogRendererDemo extends LitElement {
   // TODO: make dialog renderer argument optional
   _dialogRenderer(root: HTMLElement, _dialog: HTMLElement) {
     render(
-      html`
-        <vaadin-date-picker @change="${this._onDateChange}"></vaadin-date-picker>
-      `,
+      html`<vaadin-date-picker @change="${this._onDateChange}"></vaadin-date-picker>`,
       root,
       { eventContext: this } // bind event listener properly
     );
@@ -53,7 +51,7 @@ class DialogRendererDemo extends LitElement {
   }
 
   _toggle() {
-    this.opened = !this.opened
+    this.opened = !this.opened;
   }
 }
 

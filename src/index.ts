@@ -66,7 +66,7 @@ class DemoApp extends LitElement {
         action: () => {
           import(`./views/${demo}-demo`);
         }
-      }
+      };
     });
 
     const router = new Router(outlet);

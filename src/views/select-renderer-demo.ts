@@ -12,7 +12,7 @@ import { sharedStyles } from '../styles/shared-styles';
 type Status = {
   label: string;
   value: string;
-}
+};
 
 class SelectRendererDemo extends LitElement {
   private _boundSelectRenderer = this._selectRenderer.bind(this);
@@ -23,19 +23,14 @@ class SelectRendererDemo extends LitElement {
 
   get statuses(): Status[] {
     return [
-      {value: 'waiting', label: 'Waiting'},
-      {value: 'error', label: 'Error'},
-      {value: 'completed', label: 'Completed'}
+      { value: 'waiting', label: 'Waiting' },
+      { value: 'error', label: 'Error' },
+      { value: 'completed', label: 'Completed' }
     ];
   }
 
   render() {
-    return html`
-      <vaadin-select
-        label="Status"
-        .renderer=${this._boundSelectRenderer}
-      ></vaadin-select>
-    `;
+    return html`<vaadin-select label="Status" .renderer=${this._boundSelectRenderer}></vaadin-select>`;
   }
 
   _selectRenderer(root: HTMLElement, _select: SelectElement) {
@@ -47,7 +42,7 @@ class SelectRendererDemo extends LitElement {
     }
     render(
       html`
-        ${this.statuses.map(status => {
+        ${this.statuses.map((status) => {
           return html`<vaadin-item name="${status.value}">${status.label}</vaadin-item>`;
         })}
       `,

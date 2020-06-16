@@ -10,7 +10,7 @@ class Demo404 extends LitElement {
           margin: var(--lumo-space-m) 0;
         }
       `
-    ]
+    ];
   }
 
   render() {

@@ -34,5 +34,5 @@ export const demos = [
   {
     demo: 'select-renderer',
     title: 'Select renderer'
-  },
-]
+  }
+];

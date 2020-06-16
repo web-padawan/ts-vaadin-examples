@@ -13,12 +13,12 @@ export const sharedStyles = css`
 registerStyles(
   'vaadin-grid',
   css`
-    [part~="cell"].dark {
+    [part~='cell'].dark {
       color: #fff;
       background: #999;
     }
 
-    [part~="cell"].light {
+    [part~='cell'].light {
       color: #333;
       background: #fafafa;
     }

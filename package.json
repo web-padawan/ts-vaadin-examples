@@ -24,15 +24,22 @@
     "@vaadin/vaadin-select": "~2.3.0-alpha3",
     "@vaadin/vaadin-tabs": "~3.2.0-alpha1",
     "@vaadin/vaadin-text-field": "~2.7.0-alpha4",
+    "@vaadin/vaadin-themable-mixin": "^1.6.1",
     "@vaadin/vaadin-time-picker": "~2.3.0-alpha3",
-    "lit-element": "^2.3.1"
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.0"
   },
   "devDependencies": {
     "awesome-typescript-loader": "5.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "connect-history-api-fallback": "^1.6.0",
+    "eslint": "^6.8.0",
+    "eslint-config-vaadin": "^0.3.5",
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^2.0.0",
     "serve-static": "^1.14.1",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
@@ -40,8 +47,20 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "build": "webpack --env production",
+    "lint": "eslint src --ext .ts --ignore-path .gitignore",
     "dev": "webpack-dev-server --env development",
     "start": "node server.js"
   }

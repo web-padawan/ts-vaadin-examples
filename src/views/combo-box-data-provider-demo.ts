@@ -2,6 +2,7 @@ import { LitElement, html, query } from 'lit-element';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 import { ComboBoxElement } from '@vaadin/vaadin-combo-box';
 import { sharedStyles } from '../styles/shared-styles';
+import { API } from './shared/constants';
 
 class ComboBoxDataProviderDemo extends LitElement {
   @query('vaadin-combo-box')
@@ -12,9 +13,7 @@ class ComboBoxDataProviderDemo extends LitElement {
   }
 
   render() {
-    return html`
-      <vaadin-combo-box label="Country"></vaadin-combo-box>
-    `;
+    return html`<vaadin-combo-box label="Country"></vaadin-combo-box>`;
   }
 
   firstUpdated() {
@@ -30,10 +29,7 @@ class ComboBoxDataProviderDemo extends LitElement {
       };
 
       const index = params.page * params.pageSize;
-      const url = 'https://demo.vaadin.com/demo-data/1.0/filtered-countries?index=' + index +
-        '&count=' + params.pageSize +
-        '&filter=' + params.filter;
-
+      const url = `${API}/filtered-countries?index=${index}&count=${params.pageSize}&filter=${params.filter}`;
       xhr.open('GET', url, true);
       xhr.send();
     };

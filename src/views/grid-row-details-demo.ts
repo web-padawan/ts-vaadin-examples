@@ -4,26 +4,28 @@ import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-checkbox/vaadin-checkbox.js';
 
 import type { CheckboxElement } from '@vaadin/vaadin-checkbox';
-import type { GridElement } from '@vaadin/vaadin-grid';
+import type { GridElement } from '@vaadin/vaadin-grid';
 import type { GridItem, GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
 import { sharedStyles } from '../styles/shared-styles';
 
-const itemCache = new WeakMap();
+const itemCache = new WeakMap<HTMLElement>();
 
 type User = {
   firstName: string;
   lastName: string;
-}
+};
 
 class GridRowDetailsDemo extends LitElement {
   @property({ type: Array }) users = [];
 
   @query('vaadin-grid')
-  private grid!:  GridElement;
+  private grid!: GridElement;
 
-  private _boundToggleDetailsRenderer = this.toggleDetailsRenderer.bind(this);;
+  private _boundToggleDetailsRenderer = this._toggleDetailsRenderer.bind(this);
+
+  private _boundRowDetailsRenderer = this._rowDetailsRenderer.bind(this);
 
   static get styles() {
     return sharedStyles;
@@ -31,7 +33,7 @@ class GridRowDetailsDemo extends LitElement {
 
   render() {
     return html`
-      <vaadin-grid .items="${this.users}" .rowDetailsRenderer="${this.rowDetailsRenderer}">
+      <vaadin-grid .items="${this.users}" .rowDetailsRenderer="${this._boundRowDetailsRenderer}">
         <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
         <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
         <vaadin-grid-column .renderer="${this._boundToggleDetailsRenderer}"></vaadin-grid-column>
@@ -41,10 +43,15 @@ class GridRowDetailsDemo extends LitElement {
 
   firstUpdated() {
     fetch('https://demo.vaadin.com/demo-data/1.0/people?count=200')
-      .then(r => r.json())
-      .then(data => {
+      .then((r) => r.json())
+      .then((data) => {
         this.users = data.result;
       });
+  }
+
+  _onCheckboxChange(e: CustomEvent) {
+    const checkbox = e.target as HTMLElement;
+    this._toggleDetails(e.detail.value, itemCache.get(checkbox.parentNode as HTMLElement));
   }
 
   _toggleDetails(value: boolean, item: GridItem) {
@@ -55,34 +62,28 @@ class GridRowDetailsDemo extends LitElement {
     }
   }
 
-  toggleDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
+  _toggleDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
     // only render the checkbox once, to avoid re-creating during subsequent calls
     if (!root.firstElementChild) {
       render(
         html`
-          <vaadin-checkbox
-            @checked-changed="${(e: CustomEvent) => this._toggleDetails(e.detail.value, itemCache.get(root))}"
-          >
+          <vaadin-checkbox @checked-changed="${this._onCheckboxChange}">
             Show Details
           </vaadin-checkbox>
         `,
-        root
+        root,
+        { eventContext: this } // bind event listener properly
       );
     }
     // store the item to avoid grid virtual scrolling reusing DOM nodes to mess it up
     itemCache.set(root, rowData.item);
-    const detailsOpened = this.grid.detailsOpenedItems || [];
+    const detailsOpened = this.grid.detailsOpenedItems || [];
     (root.firstElementChild as CheckboxElement).checked = detailsOpened.indexOf(rowData.item) > -1;
   }
 
-  rowDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
+  _rowDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
     const user = rowData.item as User;
-    render(
-      html`
-        Hi! My name is ${user.firstName}!
-      `,
-      root
-    );
+    render(html`Hi! My name is ${user.firstName}!`, root);
   }
 }
 

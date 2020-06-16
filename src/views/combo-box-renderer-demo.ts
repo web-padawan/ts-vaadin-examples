@@ -1,13 +1,16 @@
 import { LitElement, html, property } from 'lit-element';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
-import { ComboBoxElement } from '@vaadin/vaadin-combo-box';
+
+import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
+import type { ComboBoxRendererModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
+
 import { sharedStyles } from '../styles/shared-styles';
-import { ComboBoxRendererModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
+import { API } from './shared/constants';
 
 type User = {
   firstName: string;
   lastName: string;
-}
+};
 
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
@@ -29,9 +32,9 @@ class ComboBoxRendererDemo extends LitElement {
   }
 
   firstUpdated() {
-    fetch('https://demo.vaadin.com/demo-data/1.0/people?count=50')
-      .then(r => r.json())
-      .then(data => {
+    fetch(`${API}/people?count=50`)
+      .then((r) => r.json())
+      .then((data) => {
         this.users = data.result;
       });
   }

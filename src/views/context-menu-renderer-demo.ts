@@ -37,7 +37,7 @@ class ContextMenuRendererDemo extends LitElement {
     }
     render(
       html`
-        ${this.actions.map(action => {
+        ${this.actions.map((action) => {
           return html`<vaadin-item @click="${this._onItemClick}">${action}</vaadin-item>`;
         })}
       `,

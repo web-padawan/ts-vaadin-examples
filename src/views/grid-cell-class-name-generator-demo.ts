@@ -5,6 +5,7 @@ import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
 import { sharedStyles } from '../styles/shared-styles';
+import { API } from './shared/constants';
 
 class GridCellClassNameGeneratorDemo extends LitElement {
   @property({ type: Array }) users = [];
@@ -25,20 +26,17 @@ class GridCellClassNameGeneratorDemo extends LitElement {
   }
 
   firstUpdated() {
-    fetch('https://demo.vaadin.com/demo-data/1.0/people?count=200')
-      .then(r => r.json())
-      .then(data => {
+    fetch(`${API}/people?count=200`)
+      .then((r) => r.json())
+      .then((data) => {
         this.users = data.result;
       });
   }
 
   cellClassGenerator(column: GridColumnElement, rowData: GridRowData) {
     const isDark = column.path === 'lastName' || column.path === 'email';
-    if (rowData.index % 2 === 0) {
-      return isDark ? 'dark' : 'light';
-    } else {
-      return isDark ? 'light' : 'dark';
-    }
+    const classes = ['light', 'dark'];
+    return rowData.index % 2 === 0 ? classes[Number(isDark)] : classes[Number(!isDark)];
   }
 }
 

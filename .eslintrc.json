@@ -1,0 +1,13 @@
+{
+  "extends": "vaadin",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "import/no-duplicates": "off",
+    "lit/no-template-map": "off"
+  }
+}
