@@ -56,6 +56,9 @@ class DemoApp extends LitElement {
             <vaadin-tab>
               <a href="/grid-row-details">Grid row details renderer</a>
             </vaadin-tab>
+            <vaadin-tab>
+              <a href="/select-renderer">Select renderer</a>
+            </vaadin-tab>
           </vaadin-tabs>
         </section>
         <main id="outlet"></main>
@@ -108,6 +111,13 @@ class DemoApp extends LitElement {
         }
       },
       {
+        path: '/select-renderer',
+        component: 'select-renderer-demo',
+        action: () => {
+          import(/* webpackChunkName: "select-renderer" */ './views/select-renderer-demo');
+        }
+      },
+      {
         path: '(.*)+',
         component: 'demo-404',
         action: () => {
@@ -135,6 +145,9 @@ class DemoApp extends LitElement {
         break;
       case '/grid-row-details':
         this.selected = 4;
+        break;
+      case '/select-renderer':
+        this.selected = 5;
         break;
       default:
         this.selected = null;
