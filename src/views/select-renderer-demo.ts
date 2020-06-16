@@ -23,10 +23,10 @@ class SelectRendererDemo extends LitElement {
 
   get statuses(): Status[] {
     return [
-			{value: 'waiting', label: 'Waiting'},
-			{value: 'error', label: 'Error'},
-			{value: 'completed', label: 'Completed'}
-		];
+      {value: 'waiting', label: 'Waiting'},
+      {value: 'error', label: 'Error'},
+      {value: 'completed', label: 'Completed'}
+    ];
   }
 
   render() {
