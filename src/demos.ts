@@ -8,6 +8,10 @@ export const demos = [
     title: 'ComboBox item renderer'
   },
   {
+    demo: 'context-menu-renderer',
+    title: 'ContextMenu renderer'
+  },
+  {
     demo: 'dialog-renderer',
     title: 'Dialog renderer'
   },

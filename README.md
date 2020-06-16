@@ -8,6 +8,7 @@ The following examples are available:
 
 - [ComboBox data provider](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/combo-box-data-provider-demo.ts)
 - [ComboBox item renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/combo-box-renderer-demo.ts)
+- [ContextMenu renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/context-menu-renderer-demo.ts)
 - [Dialog renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/dialog-renderer-demo.ts)
 - [Grid cell class generator](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-cell-class-name-generator-demo.ts)
 - [Grid column renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-column-renderer-demo.ts)
