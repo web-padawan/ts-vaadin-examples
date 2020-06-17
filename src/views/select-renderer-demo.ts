@@ -7,12 +7,10 @@ import '@vaadin/vaadin-item/vaadin-item.js';
 // TODO: make select renderer argument optional
 import type { SelectElement } from '@vaadin/vaadin-select';
 
-import type { Status } from './shared/types';
-
 class SelectRendererDemo extends LitElement {
   private _boundSelectRenderer = this._selectRenderer.bind(this);
 
-  get statuses(): Status[] {
+  get statuses(): Array<{ label: string; value: string }> {
     return [
       { value: 'waiting', label: 'Waiting' },
       { value: 'error', label: 'Error' },

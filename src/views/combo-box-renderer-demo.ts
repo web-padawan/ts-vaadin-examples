@@ -4,9 +4,6 @@ import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
 import type { ComboBoxRendererModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
 
-import { API } from './shared/constants';
-import type { User } from './shared/types';
-
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
 
@@ -22,8 +19,12 @@ class ComboBoxRendererDemo extends LitElement {
     `;
   }
 
+  get endpoint() {
+    return 'https://demo.vaadin.com/demo-data/1.0';
+  }
+
   firstUpdated() {
-    fetch(`${API}/people?count=50`)
+    fetch(`${this.endpoint}/people?count=50`)
       .then((r) => r.json())
       .then((data) => {
         this.users = data.result;
@@ -31,7 +32,7 @@ class ComboBoxRendererDemo extends LitElement {
   }
 
   itemRenderer(root: HTMLElement, _comboBox: ComboBoxElement, model: ComboBoxRendererModel) {
-    const user = model.item as User;
+    const user = model.item as { firstName: string; lastName: string };
     root.innerHTML = `<i>${user.firstName} ${user.lastName}</i>`;
   }
 }

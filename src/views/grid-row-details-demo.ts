@@ -8,9 +8,6 @@ import type { GridElement } from '@vaadin/vaadin-grid';
 import type { GridItem, GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
-import { API } from './shared/constants';
-import type { User } from './shared/types';
-
 const itemCache = new WeakMap<HTMLElement>();
 
 class GridRowDetailsDemo extends LitElement {
@@ -33,8 +30,12 @@ class GridRowDetailsDemo extends LitElement {
     `;
   }
 
+  get endpoint() {
+    return 'https://demo.vaadin.com/demo-data/1.0';
+  }
+
   firstUpdated() {
-    fetch(`${API}/people?count=200`)
+    fetch(`${this.endpoint}/people?count=200`)
       .then((r) => r.json())
       .then((data) => {
         this.users = data.result;
@@ -74,7 +75,7 @@ class GridRowDetailsDemo extends LitElement {
   }
 
   _rowDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    const user = rowData.item as User;
+    const user = rowData.item as { firstName: string };
     render(html`Hi! My name is ${user.firstName}!`, root);
   }
 }

@@ -8,9 +8,6 @@ import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 import type { GridFilterElement } from '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 
-import { API } from './shared/constants';
-import type { User } from './shared/types';
-
 class GridColumnRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
 
@@ -45,8 +42,12 @@ class GridColumnRendererDemo extends LitElement {
     `;
   }
 
+  get endpoint() {
+    return 'https://demo.vaadin.com/demo-data/1.0';
+  }
+
   firstUpdated() {
-    fetch(`${API}/people?count=200`)
+    fetch(`${this.endpoint}/people?count=200`)
       .then((r) => r.json())
       .then((data) => {
         this.users = data.result;
@@ -63,7 +64,7 @@ class GridColumnRendererDemo extends LitElement {
   }
 
   _addressRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    const user = rowData.item as User;
+    const user = rowData.item as { address: { street: string; city: string } };
     render(html`<span class="address">${user.address.street}, ${user.address.city}</span>`, root);
   }
 

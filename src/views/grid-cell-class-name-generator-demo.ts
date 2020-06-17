@@ -4,8 +4,6 @@ import '@vaadin/vaadin-grid/vaadin-grid.js';
 import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
-import { API } from './shared/constants';
-
 class GridCellClassNameGeneratorDemo extends LitElement {
   @property({ type: Array }) users = [];
 
@@ -20,8 +18,12 @@ class GridCellClassNameGeneratorDemo extends LitElement {
     `;
   }
 
+  get endpoint() {
+    return 'https://demo.vaadin.com/demo-data/1.0';
+  }
+
   firstUpdated() {
-    fetch(`${API}/people?count=200`)
+    fetch(`${this.endpoint}/people?count=200`)
       .then((r) => r.json())
       .then((data) => {
         this.users = data.result;
