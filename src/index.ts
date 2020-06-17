@@ -87,7 +87,7 @@ class DemoApp extends LitElement {
         path: '(.*)+',
         component: 'demo-404',
         action: () => {
-          import(/* webpackChunkName: "404" */ './views/404');
+          import(/* webpackChunkName: "404" */ './404');
         }
       }
     ]);
