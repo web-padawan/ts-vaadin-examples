@@ -16,7 +16,9 @@ class SelectRendererDemo extends LitElement {
   }
 
   render() {
-    return html`<vaadin-select label="Status" .renderer=${this._boundSelectRenderer}></vaadin-select>`;
+    return html`
+      <vaadin-select label="Status" .renderer=${this._boundSelectRenderer}></vaadin-select>
+    `;
   }
 
   _selectRenderer(root: HTMLElement) {
@@ -28,8 +30,8 @@ class SelectRendererDemo extends LitElement {
     }
     render(
       html`
-        ${this.statuses.map((status) => {
-          return html`<vaadin-item name="${status.value}">${status.label}</vaadin-item>`;
+        ${this.statuses.map(({ label, value }) => {
+          return html`<vaadin-item name="${value}">${label}</vaadin-item>`;
         })}
       `,
       listBox!
