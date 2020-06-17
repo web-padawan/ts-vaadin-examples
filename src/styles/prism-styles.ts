@@ -162,13 +162,4 @@ export const prismStyles = css`
   .token.namespace {
     color: #4ec9b0;
   }
-
-  pre[data-line] {
-    position: relative;
-  }
-
-  pre > code {
-    position: relative;
-    z-index: 1;
-  }
 `;
