@@ -1,18 +1,15 @@
 import { LitElement, html } from 'lit-element';
-import { prismStyles } from '../styles/prism-styles';
+import '../components/demo-snippet';
 
 import '../demos/dialog-renderer';
 import source from '../../docs/dialog-renderer.demo';
 
 class DialogRendererView extends LitElement {
-  static styles = prismStyles;
-
   render() {
     return html`
-      <dialog-renderer-demo></dialog-renderer-demo>
-      <p>
-        ${source}
-      </p>
+      <demo-snippet .source="${source}">
+        <dialog-renderer-demo></dialog-renderer-demo>
+      </demo-snippet>
     `;
   }
 }

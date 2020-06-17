@@ -1,18 +1,15 @@
 import { LitElement, html } from 'lit-element';
-import { prismStyles } from '../styles/prism-styles';
+import '../components/demo-snippet';
 
 import '../demos/notification-renderer';
 import source from '../../docs/notification-renderer.demo';
 
 class NotificationRendererView extends LitElement {
-  static styles = prismStyles;
-
   render() {
     return html`
-      <notification-renderer-demo></notification-renderer-demo>
-      <p>
-        ${source}
-      </p>
+      <demo-snippet .source="${source}">
+        <notification-renderer-demo></notification-renderer-demo>
+      </demo-snippet>
     `;
   }
 }

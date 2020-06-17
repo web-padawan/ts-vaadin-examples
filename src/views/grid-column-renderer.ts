@@ -1,18 +1,15 @@
 import { LitElement, html } from 'lit-element';
-import { prismStyles } from '../styles/prism-styles';
+import '../components/demo-snippet';
 
 import '../demos/grid-column-renderer';
 import source from '../../docs/grid-column-renderer.demo';
 
 class GridColumnRendererView extends LitElement {
-  static styles = prismStyles;
-
   render() {
     return html`
-      <grid-column-renderer-demo></grid-column-renderer-demo>
-      <p>
-        ${source}
-      </p>
+      <demo-snippet .source="${source}">
+        <grid-column-renderer-demo></grid-column-renderer-demo>
+      </demo-snippet>
     `;
   }
 }

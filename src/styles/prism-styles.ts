@@ -1,12 +1,6 @@
 import { css } from 'lit-element';
 
 export const prismStyles = css`
-  p {
-    padding: 1rem 2rem;
-    margin: 0;
-    background-color: rgba(0, 0, 0, 0.02);
-  }
-
   code[class*='lang-'],
   pre[class*='lang-'] {
     color: #393a34;
