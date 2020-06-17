@@ -69,9 +69,9 @@ class DemoApp extends LitElement {
     const demoRoutes = demos.map(({ demo }) => {
       return {
         path: `/${demo}`,
-        component: `${demo}-demo`,
+        component: `${demo}-view`,
         action: () => {
-          import(`./views/${demo}-demo`);
+          import(`./views/${demo}`);
         }
       };
     });

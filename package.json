@@ -33,6 +33,7 @@
     "awesome-typescript-loader": "5.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "connect-history-api-fallback": "^1.6.0",
+    "dot": "^1.1.3",
     "eslint": "^6.8.0",
     "eslint-config-vaadin": "^0.3.5",
     "express": "^4.17.1",
@@ -40,6 +41,8 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^2.0.0",
+    "prismjs": "^1.20.0",
+    "rimraf": "^3.0.2",
     "serve-static": "^1.14.1",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
@@ -60,6 +63,7 @@
   },
   "scripts": {
     "build": "webpack --env production",
+    "docs": "rimraf docs && node build-docs.js",
     "lint": "eslint src --ext .ts --ignore-path .gitignore",
     "dev": "webpack-dev-server --env development",
     "start": "node server.js"

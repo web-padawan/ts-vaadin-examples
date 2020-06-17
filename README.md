@@ -6,20 +6,26 @@ Examples of using Vaadin components with TypeScript.
 
 The following examples are available:
 
-- [ComboBox data provider](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/combo-box-data-provider-demo.ts)
-- [ComboBox item renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/combo-box-renderer-demo.ts)
-- [ContextMenu renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/context-menu-renderer-demo.ts)
-- [Dialog renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/dialog-renderer-demo.ts)
-- [Grid cell class generator](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-cell-class-name-generator-demo.ts)
-- [Grid column renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-column-renderer-demo.ts)
-- [Grid row details renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/grid-row-details-demo.ts)
-- [Notification renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/notification-renderer-demo.ts)
-- [Select renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/views/select-renderer-demo.ts)
+- [ComboBox data provider](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/combo-box-data-provider.ts)
+- [ComboBox item renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/combo-box-renderer.ts)
+- [ContextMenu renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/context-menu-renderer.ts)
+- [Dialog renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/dialog-renderer.ts)
+- [Grid cell class generator](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/grid-cell-class-name-generator.ts)
+- [Grid column renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/grid-column-renderer.ts)
+- [Grid row details renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/grid-row-details.ts)
+- [Notification renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/notification-renderer.ts)
+- [Select renderer](https://github.com/web-padawan/ts-vaadin-demo/blob/master/src/demos/select-renderer.ts)
 
 ## Setup
 
 ```sh
 yarn
+```
+
+## Build docs
+
+```sh
+yarn docs
 ```
 
 ## Run dev server
@@ -28,7 +34,7 @@ yarn
 yarn dev
 ```
 
-## Build
+## Build app
 
 ```sh
 yarn build

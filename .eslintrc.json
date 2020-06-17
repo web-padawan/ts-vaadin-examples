@@ -9,5 +9,17 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "import/no-duplicates": "off",
     "lit/no-template-map": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [ "build-docs.js" ],
+      "rules": {
+        "@typescript-eslint/no-empty-function-requires": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-console": "off",
+        "prefer-object-spread": "off"
+      }
+    }
+  ]
 }
