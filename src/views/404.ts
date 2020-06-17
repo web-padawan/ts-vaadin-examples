@@ -1,16 +1,12 @@
 import { LitElement, html, css } from 'lit-element';
-import { sharedStyles } from '../styles/shared-styles';
 
 class Demo404 extends LitElement {
   static get styles() {
-    return [
-      sharedStyles,
-      css`
-        h2 {
-          margin: var(--lumo-space-m) 0;
-        }
-      `
-    ];
+    return css`
+      h2 {
+        margin: var(--lumo-space-m) 0;
+      }
+    `;
   }
 
   render() {

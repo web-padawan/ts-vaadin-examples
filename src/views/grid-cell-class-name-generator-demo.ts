@@ -4,15 +4,10 @@ import '@vaadin/vaadin-grid/vaadin-grid.js';
 import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
-import { sharedStyles } from '../styles/shared-styles';
 import { API } from './shared/constants';
 
 class GridCellClassNameGeneratorDemo extends LitElement {
   @property({ type: Array }) users = [];
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   render() {
     return html`

@@ -5,18 +5,12 @@ import '@vaadin/vaadin-dialog/vaadin-dialog.js';
 
 import type { DatePickerElement } from '@vaadin/vaadin-date-picker';
 
-import { sharedStyles } from '../styles/shared-styles';
-
 class DialogRendererDemo extends LitElement {
   @property({ type: Boolean }) opened = false;
 
   @property({ type: String }) selectedDate = '';
 
   private _boundDialogRenderer = this._dialogRenderer.bind(this);
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   render() {
     return html`

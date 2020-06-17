@@ -5,16 +5,10 @@ import '@vaadin/vaadin-context-menu/vaadin-context-menu.js';
 // TODO: make context-menu renderer arguments optional
 import type { ContextMenuRenderer } from '@vaadin/vaadin-context-menu/@types/interfaces';
 
-import { sharedStyles } from '../styles/shared-styles';
-
 class ContextMenuRendererDemo extends LitElement {
   @property({ type: String }) selectedAction = '';
 
   private _boundContextMenuRenderer = this._contextMenuRenderer.bind(this) as ContextMenuRenderer;
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   render() {
     return html`

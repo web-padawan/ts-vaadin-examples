@@ -7,6 +7,7 @@ import '@vaadin/vaadin-app-layout/vaadin-app-layout.js';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js';
 import '@vaadin/vaadin-tabs/vaadin-tabs.js';
 import { demos } from './demos';
+import './styles/register-styles';
 
 class DemoApp extends LitElement {
   @property({ type: Number }) selected: number | null = 0;
@@ -29,6 +30,12 @@ class DemoApp extends LitElement {
         display: flex;
         flex-direction: column;
         height: 100%;
+      }
+
+      #outlet > * {
+        display: block;
+        margin: var(--lumo-space-m);
+        font-family: var(--lumo-font-family);
       }
     `;
   }

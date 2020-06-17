@@ -8,14 +8,10 @@ import type { GridElement } from '@vaadin/vaadin-grid';
 import type { GridItem, GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
-import { sharedStyles } from '../styles/shared-styles';
+import { API } from './shared/constants';
+import type { User } from './shared/types';
 
 const itemCache = new WeakMap<HTMLElement>();
-
-type User = {
-  firstName: string;
-  lastName: string;
-};
 
 class GridRowDetailsDemo extends LitElement {
   @property({ type: Array }) users = [];
@@ -26,10 +22,6 @@ class GridRowDetailsDemo extends LitElement {
   private _boundToggleDetailsRenderer = this._toggleDetailsRenderer.bind(this);
 
   private _boundRowDetailsRenderer = this._rowDetailsRenderer.bind(this);
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   render() {
     return html`
@@ -42,7 +34,7 @@ class GridRowDetailsDemo extends LitElement {
   }
 
   firstUpdated() {
-    fetch('https://demo.vaadin.com/demo-data/1.0/people?count=200')
+    fetch(`${API}/people?count=200`)
       .then((r) => r.json())
       .then((data) => {
         this.users = data.result;

@@ -4,20 +4,11 @@ import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
 import type { ComboBoxRendererModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
 
-import { sharedStyles } from '../styles/shared-styles';
 import { API } from './shared/constants';
-
-type User = {
-  firstName: string;
-  lastName: string;
-};
+import type { User } from './shared/types';
 
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   render() {
     return html`

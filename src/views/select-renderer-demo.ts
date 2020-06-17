@@ -7,19 +7,10 @@ import '@vaadin/vaadin-item/vaadin-item.js';
 // TODO: make select renderer argument optional
 import type { SelectElement } from '@vaadin/vaadin-select';
 
-import { sharedStyles } from '../styles/shared-styles';
-
-type Status = {
-  label: string;
-  value: string;
-};
+import type { Status } from './shared/types';
 
 class SelectRendererDemo extends LitElement {
   private _boundSelectRenderer = this._selectRenderer.bind(this);
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   get statuses(): Status[] {
     return [

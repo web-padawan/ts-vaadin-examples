@@ -8,24 +8,11 @@ import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 import type { GridFilterElement } from '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 
-import { sharedStyles } from '../styles/shared-styles';
 import { API } from './shared/constants';
-
-type Address = {
-  street: string;
-  city: string;
-};
-
-type User = {
-  address: Address;
-};
+import type { User } from './shared/types';
 
 class GridColumnRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   private _boundIndexRenderer = this._indexRenderer.bind(this);
 

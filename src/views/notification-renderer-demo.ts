@@ -5,16 +5,10 @@ import '@vaadin/vaadin-notification/vaadin-notification.js';
 // TODO: make notification renderer argument optional
 import type { NotificationElement } from '@vaadin/vaadin-notification';
 
-import { sharedStyles } from '../styles/shared-styles';
-
 class NotificationRendererDemo extends LitElement {
   @property({ type: Boolean }) opened = false;
 
   private _boundNotificationRenderer = this._notificationRenderer.bind(this);
-
-  static get styles() {
-    return sharedStyles;
-  }
 
   render() {
     return html`
