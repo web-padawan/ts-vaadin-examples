@@ -14,12 +14,11 @@ class DemoSnippet extends LitElement {
           display: block;
           max-width: 60rem;
           margin: 0 auto;
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
         }
 
         .demo {
           padding: 1.5rem;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          background: hsla(214, 60%, 80%, 0.14);
         }
 
         .code-container {
