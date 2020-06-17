@@ -2,25 +2,20 @@ import { LitElement, html, property } from 'lit-element';
 import { render } from 'lit-html';
 import '@vaadin/vaadin-context-menu/vaadin-context-menu.js';
 
-// TODO: make context-menu renderer arguments optional
-import type { ContextMenuRenderer } from '@vaadin/vaadin-context-menu/@types/interfaces';
-
 class ContextMenuRendererDemo extends LitElement {
+  @property({ type: Array }) actions = ['Edit', 'Delete'];
+
   @property({ type: String }) selectedAction = '';
 
-  private _boundContextMenuRenderer = this._contextMenuRenderer.bind(this) as ContextMenuRenderer;
+  private _boundContextMenuRenderer = this._contextMenuRenderer.bind(this);
 
   render() {
     return html`
       <vaadin-context-menu .renderer="${this._boundContextMenuRenderer}">
         <p>This paragraph has the context menu provided in the renderer function.</p>
       </vaadin-context-menu>
-      <p>Selected date: ${this.selectedAction}</p>
+      <p>Selected action: ${this.selectedAction}</p>
     `;
-  }
-
-  get actions() {
-    return ['Edit', 'Delete'];
   }
 
   _contextMenuRenderer(root: HTMLElement) {

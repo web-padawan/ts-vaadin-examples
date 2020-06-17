@@ -2,9 +2,6 @@ import { LitElement, html, property } from 'lit-element';
 import { render } from 'lit-html';
 import '@vaadin/vaadin-notification/vaadin-notification.js';
 
-// TODO: make notification renderer argument optional
-import type { NotificationElement } from '@vaadin/vaadin-notification';
-
 class NotificationRendererDemo extends LitElement {
   @property({ type: Boolean }) opened = false;
 
@@ -23,7 +20,7 @@ class NotificationRendererDemo extends LitElement {
     `;
   }
 
-  _notificationRenderer(root: HTMLElement, _notification: NotificationElement) {
+  _notificationRenderer(root: HTMLElement) {
     render(html`<b>Hello world!</b>`, root);
   }
 

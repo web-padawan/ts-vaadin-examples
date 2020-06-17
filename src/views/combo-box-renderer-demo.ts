@@ -2,7 +2,7 @@ import { LitElement, html, property } from 'lit-element';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 
 import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
-import type { ComboBoxRendererModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
+import type { ComboBoxItem, ComboBoxItemModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
 
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
@@ -33,8 +33,8 @@ class ComboBoxRendererDemo extends LitElement {
       });
   }
 
-  _itemRenderer(root: HTMLElement, _comboBox: ComboBoxElement, model: ComboBoxRendererModel) {
-    const user = model.item as { firstName: string; lastName: string };
+  _itemRenderer(root: HTMLElement, _comboBox: ComboBoxElement, model: ComboBoxItemModel) {
+    const user = model.item as ComboBoxItem;
     root.innerHTML = `<i>${user.firstName} ${user.lastName}</i>`;
   }
 }

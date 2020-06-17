@@ -4,9 +4,6 @@ import '@vaadin/vaadin-select/vaadin-select.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 import '@vaadin/vaadin-item/vaadin-item.js';
 
-// TODO: make select renderer argument optional
-import type { SelectElement } from '@vaadin/vaadin-select';
-
 class SelectRendererDemo extends LitElement {
   private _boundSelectRenderer = this._selectRenderer.bind(this);
 
@@ -22,7 +19,7 @@ class SelectRendererDemo extends LitElement {
     return html`<vaadin-select label="Status" .renderer=${this._boundSelectRenderer}></vaadin-select>`;
   }
 
-  _selectRenderer(root: HTMLElement, _select: SelectElement) {
+  _selectRenderer(root: HTMLElement) {
     // only render list-box element once
     let listBox = root.firstElementChild;
     if (!listBox) {
