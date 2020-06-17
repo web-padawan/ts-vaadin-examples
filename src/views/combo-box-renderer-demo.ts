@@ -7,12 +7,14 @@ import type { ComboBoxRendererModel } from '@vaadin/vaadin-combo-box/@types/inte
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users = [];
 
+  private _boundItemRenderer = this._itemRenderer.bind(this);
+
   render() {
     return html`
       <vaadin-combo-box
         label="User"
         .items="${this.users}"
-        .renderer="${this.itemRenderer}"
+        .renderer="${this._boundItemRenderer}"
         item-value-path="lastName"
         item-label-path="lastName"
       ></vaadin-combo-box>
@@ -31,7 +33,7 @@ class ComboBoxRendererDemo extends LitElement {
       });
   }
 
-  itemRenderer(root: HTMLElement, _comboBox: ComboBoxElement, model: ComboBoxRendererModel) {
+  _itemRenderer(root: HTMLElement, _comboBox: ComboBoxElement, model: ComboBoxRendererModel) {
     const user = model.item as { firstName: string; lastName: string };
     root.innerHTML = `<i>${user.firstName} ${user.lastName}</i>`;
   }
