@@ -1,121 +1,174 @@
 import { css } from 'lit-element';
 
 export const prismStyles = css`
-  code[class*='lang-'],
-  pre[class*='lang-'] {
-    color: #393a34;
-    font-family: 'Source Code Pro', 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier, monospace;
+  pre,
+  code {
+    color: #d4d4d4;
+    font-size: 13px;
+    text-shadow: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     direction: ltr;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
-    font-size: 0.875em;
-    line-height: 1.4;
-
+    line-height: 1.5;
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
 
-  pre[class*='lang-']::-moz-selection,
-  pre[class*='lang-'] ::-moz-selection,
-  code[class*='lang-']::-moz-selection,
-  code[class*='lang-'] ::-moz-selection {
+  pre::selection,
+  code::selection {
+    text-shadow: none;
     background: #b3d4fc;
   }
 
-  pre[class*='lang-']::selection,
-  pre[class*='lang-'] ::selection,
-  code[class*='lang-']::selection,
-  code[class*='lang-'] ::selection {
-    background: #b3d4fc;
-  }
-
-  /* Code blocks */
-  pre[class*='lang-'] {
-    padding: 1em;
-    margin: 0.5em 0;
+  pre {
+    margin: 0;
+    padding: 1rem 1.5rem;
     overflow: auto;
-    border: 1px solid #ddd;
-    background-color: white;
+    background: #1e1e1e;
   }
 
-  /* Inline code */
-  :not(pre) > code[class*='lang-'] {
-    padding: 0.2em;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background: #f8f8f8;
-    border: 1px solid #ddd;
+  :not(pre) > code {
+    padding: 0.1em 0.3em;
+    border-radius: 0.3em;
+    color: #db4c69;
+    background: #f9f2f4;
+  }
+
+  .namespace {
+    opacity: 0.7;
   }
 
   .token.comment,
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: #998;
-    font-style: italic;
+    color: #6a9955;
   }
 
-  .token.namespace {
-    opacity: 0.7;
+  .token.punctuation {
+    color: #d4d4d4;
   }
 
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #b5cea8;
+  }
+
+  .token.selector,
+  .token.attr-name,
   .token.string,
-  .token.attr-value {
-    color: #e3116c;
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #ce9178;
   }
 
-  .token.punctuation,
-  .token.operator {
-    color: #393a34; /* no highlight */
-  }
-
+  .token.operator,
   .token.entity,
   .token.url,
-  .token.symbol,
-  .token.number,
-  .token.boolean,
-  .token.variable,
-  .token.constant,
-  .token.property,
-  .token.regex,
-  .token.inserted {
-    color: #36acaa;
+  .language-css .token.string,
+  .style .token.string {
+    color: #d4d4d4;
+    background: #1e1e1e;
   }
 
   .token.atrule,
-  .token.keyword,
-  .token.attr-name,
-  .lang-autohotkey .token.selector {
-    color: #00a4db;
+  .token.attr-value,
+  .token.keyword {
+    color: #c586c0;
   }
 
-  .token.function,
-  .token.deleted,
-  .lang-autohotkey .token.tag {
-    color: #9a050f;
+  .token.function {
+    color: #dcdcaa;
   }
 
-  .token.tag,
-  .token.selector,
-  .lang-autohotkey .token.keyword {
-    color: #00009f;
+  .token.regex,
+  .token.important,
+  .token.variable {
+    color: #d16969;
   }
 
   .token.important,
-  .token.function,
   .token.bold {
     font-weight: bold;
   }
 
   .token.italic {
     font-style: italic;
+  }
+
+  .token.constant {
+    color: #9cdcfe;
+  }
+
+  .token.class-name {
+    color: #4ec9b0;
+  }
+
+  .token.parameter {
+    color: #9cdcfe;
+  }
+
+  .token.interpolation {
+    color: #9cdcfe;
+  }
+
+  .token.punctuation.interpolation-punctuation {
+    color: #569cd6;
+  }
+
+  .token.boolean {
+    color: #569cd6;
+  }
+
+  .token.property {
+    color: #9cdcfe;
+  }
+
+  .token.selector {
+    color: #d7ba7d;
+  }
+
+  .token.tag {
+    color: #569cd6;
+  }
+
+  .token.attr-name {
+    color: #9cdcfe;
+  }
+
+  .token.attr-value {
+    color: #ce9178;
+  }
+
+  .token.entity {
+    color: #4ec9b0;
+    cursor: unset;
+  }
+
+  .token.namespace {
+    color: #4ec9b0;
+  }
+
+  pre[data-line] {
+    position: relative;
+  }
+
+  pre > code {
+    position: relative;
+    z-index: 1;
   }
 `;

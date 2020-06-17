@@ -24,7 +24,7 @@ class DemoSnippet extends LitElement {
 
         .code-container {
           margin: 0;
-          padding: 1rem 1.5rem;
+          padding: 0;
           background-color: rgba(0, 0, 0, 0.02);
           font-size: 1rem;
           overflow: auto;
@@ -39,13 +39,13 @@ class DemoSnippet extends LitElement {
           border: none;
           border-radius: 0.25rem;
           cursor: pointer;
-          background: rgba(0, 0, 0, 0.3);
-          color: #fff;
+          background: rgba(255, 255, 255, 0.9);
+          color: #000;
         }
 
         button:focus,
         button:hover {
-          background: rgba(0, 0, 0, 0.6);
+          background: rgba(255, 255, 255, 0.6);
         }
       `
     ];
