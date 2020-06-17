@@ -46,7 +46,7 @@ class DemoApp extends LitElement {
     return html`
       <vaadin-app-layout>
         <vaadin-drawer-toggle slot="navbar"></vaadin-drawer-toggle>
-        <div main-title slot="navbar">TS examples</div>
+        <div main-title slot="navbar">TypeScript Vaadin examples</div>
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
             ${demos.map(({ demo, title }) => {

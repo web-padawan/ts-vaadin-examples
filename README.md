@@ -1,4 +1,4 @@
-# TS vaadin examples
+# TypeScript Vaadin examples
 
 Examples of using Vaadin components with TypeScript.
 
