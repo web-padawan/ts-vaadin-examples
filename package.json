@@ -62,7 +62,7 @@
     ]
   },
   "scripts": {
-    "build": "webpack --env production",
+    "build": "npm run docs && webpack --env production",
     "docs": "rimraf docs && node build-docs.js",
     "lint": "eslint src --ext .ts --ignore-path .gitignore",
     "dev": "webpack-dev-server --env development",
