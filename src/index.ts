@@ -6,6 +6,7 @@ import '@vaadin/vaadin-lumo-styles/typography.js';
 import '@vaadin/vaadin-app-layout/vaadin-app-layout.js';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js';
 import '@vaadin/vaadin-tabs/vaadin-tabs.js';
+import '@vaadin/vaadin-tabs/vaadin-tab.js';
 import { demos } from './demos';
 import './styles/register-styles';
 
@@ -19,7 +20,7 @@ class DemoApp extends LitElement {
         font-family: var(--lumo-font-family);
       }
 
-      [main-title] {
+      .title {
         padding: var(--lumo-space-m);
         font-size: var(--lumo-font-size-xl);
         line-height: var(--lumo-line-height-m);
@@ -46,7 +47,7 @@ class DemoApp extends LitElement {
     return html`
       <vaadin-app-layout>
         <vaadin-drawer-toggle slot="navbar"></vaadin-drawer-toggle>
-        <div main-title slot="navbar">TypeScript Vaadin examples</div>
+        <div class="title" slot="navbar">TypeScript Vaadin examples</div>
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
             ${demos.map(({ demo, title }) => {

@@ -54,7 +54,7 @@ class GridRowDetailsDemo extends LitElement {
     }
   }
 
-  _toggleDetailsRenderer(root: HTMLElement, _column?: GridColumnElement, model?: GridItemModel) {
+  _toggleDetailsRenderer(root: HTMLElement, _column: GridColumnElement, model: GridItemModel) {
     // only render the checkbox once, to avoid re-creating during subsequent calls
     if (!root.firstElementChild) {
       render(
@@ -67,14 +67,14 @@ class GridRowDetailsDemo extends LitElement {
         { eventContext: this } // bind event listener properly
       );
     }
-    const { item } = model!;
+    const { item } = model;
     // store the item to avoid grid virtual scrolling reusing DOM nodes to mess it up
     itemCache.set(root, item);
     const detailsOpened = this.grid.detailsOpenedItems || [];
     (root.firstElementChild as CheckboxElement).checked = detailsOpened.indexOf(item) > -1;
   }
 
-  _rowDetailsRenderer(root: HTMLElement, _column: GridColumnElement, model: GridItemModel) {
+  _rowDetailsRenderer(root: HTMLElement, _grid: GridElement, model: GridItemModel) {
     const user = model.item as { firstName: string };
     render(html`Hi! My name is ${user.firstName}!`, root);
   }

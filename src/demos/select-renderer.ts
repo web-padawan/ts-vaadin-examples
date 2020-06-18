@@ -31,7 +31,7 @@ class SelectRendererDemo extends LitElement {
     render(
       html`
         ${this.statuses.map(({ label, value }) => {
-          return html`<vaadin-item name="${value}">${label}</vaadin-item>`;
+          return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
         })}
       `,
       listBox!
