@@ -1,10 +1,18 @@
-import { LitElement, html, css, property, TemplateResult } from 'lit-element';
+import { LitElement, html, css, svg, property, TemplateResult } from 'lit-element';
 import { prismStyles } from '../styles/prism-styles';
+
+const copyIcon = svg`
+  <path
+    d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+  ></path>
+`;
+
+const checkIcon = svg`<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>`;
 
 class DemoSnippet extends LitElement {
   @property({ attribute: false }) source!: TemplateResult;
 
-  @property() copyBtnText = 'copy';
+  @property({ type: Boolean }) copied = false;
 
   static get styles() {
     return [
@@ -30,21 +38,51 @@ class DemoSnippet extends LitElement {
           position: relative;
         }
 
-        button {
+        .actions {
           position: absolute;
-          top: 0.5rem;
-          right: 0.5rem;
-          text-transform: uppercase;
-          border: none;
-          border-radius: 0.25rem;
-          cursor: pointer;
-          background: rgba(255, 255, 255, 0.9);
-          color: #000;
+          top: 0.75rem;
+          right: 0.75rem;
         }
 
-        button:focus,
-        button:hover {
-          background: rgba(255, 255, 255, 0.6);
+        button {
+          position: relative;
+          width: 36px;
+          height: 36px;
+          text-transform: uppercase;
+          border: none;
+          cursor: pointer;
+          background-color: transparent;
+          color: #fff;
+          outline: none;
+        }
+
+        button::after {
+          background-color: currentColor;
+          border-radius: 50%;
+          content: '';
+          top: 0;
+          left: 0;
+          height: 100%;
+          opacity: 0;
+          pointer-events: none;
+          position: absolute;
+          transform: scale(1.3);
+          width: 100%;
+          transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+        }
+
+        button:hover::after {
+          opacity: 0.08;
+        }
+
+        button:focus::after {
+          opacity: 0.16;
+        }
+
+        .icon {
+          fill: currentColor;
+          width: 24px;
+          height: 24px;
         }
       `
     ];
@@ -57,7 +95,13 @@ class DemoSnippet extends LitElement {
       </div>
       <div class="code-container">
         <pre><code>${this.source}</code></pre>
-        <button @click="${this._onCopyClick}">${this.copyBtnText}</button>
+        <div class="actions">
+          <button @click="${this._onCopyClick}" aria-label="Copy">
+            <svg class="icon" viewBox="0 0 24 24" focusable="false">
+              ${this.copied ? checkIcon : copyIcon}
+            </svg>
+          </button>
+        </div>
       </div>
     `;
   }
@@ -72,15 +116,14 @@ class DemoSnippet extends LitElement {
       selection.addRange(range);
       try {
         document.execCommand('copy');
-        this.copyBtnText = 'done';
+        this.copied = true;
       } catch (err) {
         // Copy command is not available
-        this.copyBtnText = 'error';
       }
 
       // Return to the copy button after a second.
       setTimeout(() => {
-        this.copyBtnText = 'copy';
+        this.copied = false;
       }, 1000);
 
       selection.removeAllRanges();
