@@ -1,5 +1,6 @@
 import { LitElement, html, property } from 'lit-element';
 import { render } from 'lit-html';
+import '@vaadin/vaadin-button/vaadin-button.js';
 import '@vaadin/vaadin-date-picker/vaadin-date-picker.js';
 import '@vaadin/vaadin-dialog/vaadin-dialog.js';
 
@@ -15,7 +16,7 @@ class DialogRendererDemo extends LitElement {
   render() {
     return html`
       <p>Selected date: ${this.selectedDate}</p>
-      <button @click=${this._toggle}>Toggle</button>
+      <vaadin-button @click=${this._toggle} theme="primary">Toggle</vaadin-button>
       <vaadin-dialog
         .opened=${this.opened}
         .renderer=${this._boundDialogRenderer}
@@ -27,7 +28,12 @@ class DialogRendererDemo extends LitElement {
 
   _dialogRenderer(root: HTMLElement) {
     render(
-      html`<vaadin-date-picker @change="${this._onDateChange}"></vaadin-date-picker>`,
+      html`
+        <vaadin-date-picker
+          label="Select date"
+          @change="${this._onDateChange}"
+        ></vaadin-date-picker>
+      `,
       root,
       { eventContext: this } // bind event listener properly
     );
