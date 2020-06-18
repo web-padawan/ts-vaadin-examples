@@ -4,7 +4,7 @@ import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 import '@vaadin/vaadin-grid/vaadin-grid-sorter.js';
 
-import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
+import type { GridItemModel } from '@vaadin/vaadin-grid';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 import type { GridFilterElement } from '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 
@@ -73,17 +73,17 @@ class GridColumnRendererDemo extends LitElement {
     (target.parentNode as GridFilterElement).value = e.detail.value;
   }
 
-  _indexRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    render(html`<div>${rowData.index}</div>`, root);
+  _indexRenderer(root: HTMLElement, _column?: GridColumnElement, model?: GridItemModel) {
+    render(html`<div>${model!.index}</div>`, root);
   }
 
-  _nameRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    const user = rowData.item as User;
+  _nameRenderer(root: HTMLElement, _column?: GridColumnElement, model?: GridItemModel) {
+    const user = model!.item as User;
     render(html`<div>${user.firstName} ${user.lastName}</div>`, root);
   }
 
-  _addressRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    const user = rowData.item as User;
+  _addressRenderer(root: HTMLElement, _column?: GridColumnElement, model?: GridItemModel) {
+    const user = model!.item as User;
     render(html`<span class="address">${user.address.street}, ${user.address.city}</span>`, root);
   }
 

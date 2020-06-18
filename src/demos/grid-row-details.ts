@@ -4,8 +4,7 @@ import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-checkbox/vaadin-checkbox.js';
 
 import type { CheckboxElement } from '@vaadin/vaadin-checkbox';
-import type { GridElement } from '@vaadin/vaadin-grid';
-import type { GridItem, GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
+import type { GridElement, GridItem, GridItemModel } from '@vaadin/vaadin-grid';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 
 const itemCache = new WeakMap<HTMLElement>();
@@ -55,7 +54,7 @@ class GridRowDetailsDemo extends LitElement {
     }
   }
 
-  _toggleDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
+  _toggleDetailsRenderer(root: HTMLElement, _column?: GridColumnElement, model?: GridItemModel) {
     // only render the checkbox once, to avoid re-creating during subsequent calls
     if (!root.firstElementChild) {
       render(
@@ -68,14 +67,15 @@ class GridRowDetailsDemo extends LitElement {
         { eventContext: this } // bind event listener properly
       );
     }
+    const { item } = model!;
     // store the item to avoid grid virtual scrolling reusing DOM nodes to mess it up
-    itemCache.set(root, rowData.item);
+    itemCache.set(root, item);
     const detailsOpened = this.grid.detailsOpenedItems || [];
-    (root.firstElementChild as CheckboxElement).checked = detailsOpened.indexOf(rowData.item) > -1;
+    (root.firstElementChild as CheckboxElement).checked = detailsOpened.indexOf(item) > -1;
   }
 
-  _rowDetailsRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    const user = rowData.item as { firstName: string };
+  _rowDetailsRenderer(root: HTMLElement, _column: GridColumnElement, model: GridItemModel) {
+    const user = model.item as { firstName: string };
     render(html`Hi! My name is ${user.firstName}!`, root);
   }
 }
