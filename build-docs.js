@@ -4,7 +4,7 @@ const dot = require('dot');
 const prism = require('prismjs');
 const loadLanguages = require('prismjs/components/');
 
-loadLanguages(['ts']);
+loadLanguages(['markup', 'js-templates', 'ts']);
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -24,7 +24,6 @@ function parseView(name) {
       const source = code.toString('utf-8');
       return { title, source };
     })
-
     .catch((err) => console.error(err.toString(), err.stack));
 }
 
@@ -32,11 +31,10 @@ function addHelperFunctionsToContext(context) {
   return Object.assign({}, context, {
     highlightJS: (text) =>
       prism
-        .highlight(text, prism.languages.typescript)
+        .highlight(text, prism.languages.typescript, 'ts')
         .replace(/`/g, '\\`')
         .replace(/^\n*/, '')
-        .replace(/\s*$/, '')
-        .replace(/ {2}/g, '<span class="indent">&nbsp;&nbsp;</span>'),
+        .replace(/\s*$/, ''),
     escape: (text) => text.replace(/\${/g, '\\${')
   });
 }
