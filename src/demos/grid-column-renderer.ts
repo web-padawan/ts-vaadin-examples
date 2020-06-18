@@ -8,10 +8,21 @@ import type { GridRowData } from '@vaadin/vaadin-grid/@types/interfaces';
 import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
 import type { GridFilterElement } from '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 
+type User = {
+  firstName: string;
+  lastName: string;
+  address: {
+    street: string;
+    city: string;
+  };
+};
+
 class GridColumnRendererDemo extends LitElement {
-  @property({ type: Array }) users = [];
+  @property({ type: Array }) users: User[] = [];
 
   private _boundIndexRenderer = this._indexRenderer.bind(this);
+
+  private _boundNameRenderer = this._nameRenderer.bind(this);
 
   private _boundAddressRenderer = this._addressRenderer.bind(this);
 
@@ -26,15 +37,18 @@ class GridColumnRendererDemo extends LitElement {
           header="#"
           .renderer="${this._boundIndexRenderer}"
         ></vaadin-grid-column>
-        <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
-        <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
         <vaadin-grid-column
-          width="150px"
+          width="120px"
+          header="Name"
+          .renderer="${this._boundNameRenderer}"
+        ></vaadin-grid-column>
+        <vaadin-grid-column
+          auto-width
           header="Address"
           .renderer="${this._boundAddressRenderer}"
         ></vaadin-grid-column>
         <vaadin-grid-column
-          width="150px"
+          auto-width
           path="email"
           .headerRenderer="${this._boundEmailHeaderRenderer}"
         ></vaadin-grid-column>
@@ -63,8 +77,13 @@ class GridColumnRendererDemo extends LitElement {
     render(html`<div>${rowData.index}</div>`, root);
   }
 
+  _nameRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
+    const user = rowData.item as User;
+    render(html`<div>${user.firstName} ${user.lastName}</div>`, root);
+  }
+
   _addressRenderer(root: HTMLElement, _column: GridColumnElement, rowData: GridRowData) {
-    const user = rowData.item as { address: { street: string; city: string } };
+    const user = rowData.item as User;
     render(html`<span class="address">${user.address.street}, ${user.address.city}</span>`, root);
   }
 
