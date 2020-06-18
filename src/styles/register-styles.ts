@@ -5,13 +5,12 @@ registerStyles(
   'vaadin-grid',
   css`
     [part~='cell'].dark {
-      color: #fff;
-      background: #999;
+      color: var(--lumo-contrast-color);
+      background-color: var(--lumo-base-color);
     }
 
     [part~='cell'].light {
-      color: #333;
-      background: #fafafa;
+      background: var(--lumo-shade-50pct);
     }
   `
 );
