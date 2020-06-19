@@ -70,7 +70,7 @@ class DemoSnippet extends LitElement {
           opacity: 0;
           pointer-events: none;
           position: absolute;
-          transform: scale(1.3);
+          transform: scale(1.25);
           width: 36px;
           transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
         }
