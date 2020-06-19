@@ -2,12 +2,12 @@ import { LitElement, html } from 'lit-element';
 import '../components/demo-snippet';
 
 import '../demos/notification-renderer';
-import source from '../../docs/notification-renderer.demo';
+import { source, title } from '../../docs/notification-renderer.demo';
 
 class NotificationRendererView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}">
+      <demo-snippet .source="${source}" .name="${title}">
         <notification-renderer-demo></notification-renderer-demo>
       </demo-snippet>
     `;

@@ -2,12 +2,12 @@ import { LitElement, html } from 'lit-element';
 import '../components/demo-snippet';
 
 import '../demos/grid-row-details';
-import source from '../../docs/grid-row-details.demo';
+import { source, title } from '../../docs/grid-row-details.demo';
 
 class GridRowDetailsView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}">
+      <demo-snippet .source="${source}" .name="${title}">
         <grid-row-details-demo></grid-row-details-demo>
       </demo-snippet>
     `;

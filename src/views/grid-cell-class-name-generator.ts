@@ -2,12 +2,12 @@ import { LitElement, html } from 'lit-element';
 import '../components/demo-snippet';
 
 import '../demos/grid-cell-class-name-generator';
-import source from '../../docs/grid-cell-class-name-generator.demo';
+import { source, title } from '../../docs/grid-cell-class-name-generator.demo';
 
 class GridCellClassNameGeneratorView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}">
+      <demo-snippet .source="${source}" .name="${title}">
         <grid-cell-class-name-generator-demo></grid-cell-class-name-generator-demo>
       </demo-snippet>
     `;

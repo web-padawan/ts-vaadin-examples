@@ -2,12 +2,12 @@ import { LitElement, html } from 'lit-element';
 import '../components/demo-snippet';
 
 import '../demos/dialog-renderer';
-import source from '../../docs/dialog-renderer.demo';
+import { source, title } from '../../docs/dialog-renderer.demo';
 
 class DialogRendererView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}">
+      <demo-snippet .source="${source}" .name="${title}">
         <dialog-renderer-demo></dialog-renderer-demo>
       </demo-snippet>
     `;
