@@ -330,6 +330,17 @@
     "@vaadin/vaadin-material-styles" "^1.2.0"
     "@vaadin/vaadin-themable-mixin" "^1.6.1"
 
+"@vaadin/vaadin-charts@~7.0.0-alpha8":
+  version "7.0.0-alpha8"
+  resolved "https://registry.yarnpkg.com/@vaadin/vaadin-charts/-/vaadin-charts-7.0.0-alpha8.tgz#f73d5a3d8c110822132aadb727371fccd1bce0d1"
+  integrity sha512-GvI7wlW+hqEDAz6irqmyLyptXtx61WcNcdimtUOfGHL3prMyBUYtMuZUXRb1a3TzjFgX/ZvlZ87Sx3YzcRAMjA==
+  dependencies:
+    "@polymer/polymer" "^3.0.0"
+    "@vaadin/vaadin-element-mixin" "^2.4.1"
+    "@vaadin/vaadin-license-checker" "^2.1.0"
+    "@vaadin/vaadin-themable-mixin" "^1.6.1"
+    highcharts "8.1.2"
+
 "@vaadin/vaadin-checkbox@~2.4.0-alpha3":
   version "2.4.0-alpha3"
   resolved "https://registry.yarnpkg.com/@vaadin/vaadin-checkbox/-/vaadin-checkbox-2.4.0-alpha3.tgz#3912b514164d853e896677e295065f1bbb2c64c1"
@@ -456,6 +467,13 @@
     "@vaadin/vaadin-lumo-styles" "^1.1.0"
     "@vaadin/vaadin-material-styles" "^1.1.0"
     "@vaadin/vaadin-themable-mixin" "^1.6.1"
+
+"@vaadin/vaadin-license-checker@^2.1.0":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@vaadin/vaadin-license-checker/-/vaadin-license-checker-2.1.2.tgz#a255bed26291a4937106846690455b9e6e59ee39"
+  integrity sha512-oD6/MoavXyIZp6NWhkbJD5RKrpiWohhaQpgqjM0bFIthRr+1NoiG5R1w0uY3NIdMDuaXlsUFSQJ/Viz1v7F/jQ==
+  dependencies:
+    "@vaadin/vaadin-development-mode-detector" "^2.0.0"
 
 "@vaadin/vaadin-list-box@^1.4.0-alpha1", "@vaadin/vaadin-list-box@~1.4.0-alpha1":
   version "1.4.0-alpha1"
@@ -2951,6 +2969,11 @@ he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
+
+highcharts@8.1.2:
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-8.1.2.tgz#a4e7d74a6140028e676a3a54f5fd0ea6ccbcc90e"
+  integrity sha512-Q124Lj+2+bVY2MKMd7d8uSVAmhZVzWgknUUzUBEC27S94dCyK6PBgahuwiMP/ET4w7qSFBBi4OC77ZUb0Vnuyg==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"

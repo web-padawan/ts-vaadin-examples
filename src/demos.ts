@@ -1,5 +1,9 @@
 export const demos = [
   {
+    demo: 'chart-configuration',
+    title: 'Chart configuration'
+  },
+  {
     demo: 'combo-box-data-provider',
     title: 'ComboBox data provider'
   },
