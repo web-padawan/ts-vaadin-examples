@@ -3586,19 +3586,19 @@ listr2@^2.1.0:
     rxjs "^6.5.5"
     through "^2.3.8"
 
-lit-analyzer@1.2.0-next.3:
-  version "1.2.0-next.3"
-  resolved "https://registry.yarnpkg.com/lit-analyzer/-/lit-analyzer-1.2.0-next.3.tgz#aefd1ed3848ea736b936ab84e13b1e02786a49e0"
-  integrity sha512-58Rv5UCP3kZ6lhXgrjigH+3AK3sumJ+z8XpZossDhUEHLx+4lrcUyUeBsnNA1EYXT/MCe0L1ZT/c0rZWSsjNzw==
+lit-analyzer@1.2.0, lit-analyzer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lit-analyzer/-/lit-analyzer-1.2.0.tgz#e57334390ca9bd501f6bd5ac1ace3fad76053087"
+  integrity sha512-y3Zoo0gmfM3wVyDZvURoFnBmkWR+5jI6PAQ3C1j5T7R2PaY3beqJTZvictaahN8GEuPctXejddIgWNAkQIxKNA==
   dependencies:
     chalk "^2.4.2"
     didyoumean2 "4.1.0"
     fast-glob "^2.2.6"
     parse5 "5.1.0"
-    ts-simple-type "~1.0.0-next.1"
+    ts-simple-type "~1.0.5"
     vscode-css-languageservice "4.3.0"
     vscode-html-languageservice "3.1.0"
-    web-component-analyzer "~1.1.0-next.2"
+    web-component-analyzer "~1.1.1"
 
 lit-element@^2.0.0, lit-element@^2.3.1:
   version "2.3.1"
@@ -5694,14 +5694,14 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
-ts-lit-plugin@1.2.0-next.3:
-  version "1.2.0-next.3"
-  resolved "https://registry.yarnpkg.com/ts-lit-plugin/-/ts-lit-plugin-1.2.0-next.3.tgz#45c7cc1c2a3f81b3e5b6e766479462beb4bc52f9"
-  integrity sha512-fwZUHcocDNjDGU1Vl4tQeSRsnI2PoU2CpaCso6FNd8wFtKtG598Ikhj5uT9PjRRbznQqYaGiZle6mHr8v1ph+Q==
+ts-lit-plugin@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ts-lit-plugin/-/ts-lit-plugin-1.2.0.tgz#a82909a5f2b3b4bef8c09d217fd44016a38e2d87"
+  integrity sha512-Vt70CivkODaiW8POqYJatZhjt4OaoyscSxMM6fL+Tyf890vbb2ezNpRsjYeFpULnyaJXpxNL6+eoNgHFqY45pA==
   dependencies:
-    lit-analyzer "1.2.0-next.3"
+    lit-analyzer "1.2.0"
 
-ts-simple-type@~1.0.0-next.1, ts-simple-type@~1.0.5:
+ts-simple-type@~1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/ts-simple-type/-/ts-simple-type-1.0.6.tgz#f18d26c269735bae97bd0741a729eb35a8391a1c"
   integrity sha512-akpoJLtSFZOD9kZEcaha8302p323hrY/TzZikTwtTWhvAs+Zt5rX1gcwl9EjwcrCGjTU+0xu8UK1Om5eWMC8/Q==
@@ -5983,10 +5983,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-web-component-analyzer@~1.1.0-next.2:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/web-component-analyzer/-/web-component-analyzer-1.1.4.tgz#085acbeeb39c81d65e6534ff6dddaff6db811f70"
-  integrity sha512-6Nso9ygw+r4eJAoBla0fPRzDAOyrP1SeyzX6aJQWEOalymbZa3WJLLrQ39LH6jq+fRTI0ApG0KP3GTRKot2k2w==
+web-component-analyzer@~1.1.1:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/web-component-analyzer/-/web-component-analyzer-1.1.5.tgz#4146132ddc8fb47fe461c383e6d9959b5f182671"
+  integrity sha512-/W/xgIjJH05uC0gp4ZYEUw1nLXYUzC+b5fUrvUSRDF8/iMwUclNUicPZm7783YsJS8Swmrd+hsKvah4j4eQdeQ==
   dependencies:
     fast-glob "^3.2.2"
     ts-simple-type "~1.0.5"
