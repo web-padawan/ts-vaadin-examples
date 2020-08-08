@@ -45,7 +45,7 @@
     "lit-analyzer": "^1.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.0",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.21.0",
     "rimraf": "^3.0.2",
     "ts-lit-plugin": "^1.2.0",
     "typescript": "^3.9.5",
