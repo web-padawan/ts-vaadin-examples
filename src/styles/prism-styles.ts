@@ -58,7 +58,6 @@ export const prismStyles = css`
   }
 
   .token.property,
-  .token.tag,
   .token.boolean,
   .token.number,
   .token.constant,
@@ -68,7 +67,6 @@ export const prismStyles = css`
   }
 
   .token.selector,
-  .token.attr-name,
   .token.string,
   .token.char,
   .token.builtin,
@@ -86,7 +84,6 @@ export const prismStyles = css`
   }
 
   .token.atrule,
-  .token.attr-value,
   .token.keyword {
     color: #c586c0;
   }
