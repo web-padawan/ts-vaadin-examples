@@ -14,9 +14,7 @@ class ContextMenuRendererDemo extends LitElement {
   render() {
     return html`
       <vaadin-context-menu .renderer="${this._boundContextMenuRenderer}">
-        <p>
-          This paragraph has the context menu created using renderer function.
-        </p>
+        <p>This paragraph has the context menu created using renderer function.</p>
       </vaadin-context-menu>
       <p>Selected action: ${this.selectedAction}</p>
     `;
