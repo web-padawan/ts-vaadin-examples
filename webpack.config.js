@@ -1,13 +1,11 @@
 'use strict';
 
 const { resolve } = require('path');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ENV = process.argv.find(arg => arg.includes('production'))
-  ? 'production'
-  : 'development';
+const ENV = process.argv.find((arg) => arg.includes('production')) ? 'production' : 'development';
 const OUTPUT_PATH = ENV === 'production' ? resolve('dist') : resolve('src');
 const INDEX_TEMPLATE = resolve('./src/index.html');
 
@@ -25,9 +23,7 @@ const commonConfig = merge([
       rules: [
         {
           test: /\.ts$/,
-          use: [
-            'awesome-typescript-loader'
-          ]
+          use: ['awesome-typescript-loader']
         }
       ]
     }
@@ -74,7 +70,7 @@ const productionConfig = merge([
   }
 ]);
 
-module.exports = mode => {
+module.exports = (mode) => {
   if (mode === 'production') {
     return merge(commonConfig, productionConfig, { mode });
   }
