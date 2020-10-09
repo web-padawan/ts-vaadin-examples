@@ -3,6 +3,7 @@
 const { resolve } = require('path');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ENV = process.argv.find((arg) => arg.includes('production')) ? 'production' : 'development';
@@ -57,6 +58,14 @@ const productionConfig = merge([
     devtool: 'nosources-source-map',
     plugins: [
       new CleanWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: resolve('src/demos.json'),
+            to: OUTPUT_PATH
+          }
+        ]
+      }),
       new HtmlWebpackPlugin({
         template: INDEX_TEMPLATE,
         minify: {

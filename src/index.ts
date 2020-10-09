@@ -7,11 +7,14 @@ import '@vaadin/vaadin-app-layout/vaadin-app-layout.js';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js';
 import '@vaadin/vaadin-tabs/vaadin-tabs.js';
 import '@vaadin/vaadin-tabs/vaadin-tab.js';
-import { demos } from './demos';
 import './styles/register-styles';
+
+type DemoData = { demo: string; title: string };
 
 class DemoApp extends LitElement {
   @property({ type: Number }) selected: number | null = 0;
+
+  @property({ attribute: false }) demos: DemoData[] = [];
 
   static get styles() {
     return css`
@@ -50,7 +53,7 @@ class DemoApp extends LitElement {
         <div class="title" slot="navbar">TypeScript Vaadin examples</div>
         <section slot="drawer">
           <vaadin-tabs .selected="${this.selected}" orientation="vertical">
-            ${demos.map(({ demo, title }) => {
+            ${this.demos.map(({ demo, title }) => {
               return html`
                 <vaadin-tab>
                   <a href="/${demo}">${title}</a>
@@ -64,8 +67,12 @@ class DemoApp extends LitElement {
     `;
   }
 
-  firstUpdated() {
+  async firstUpdated() {
     const outlet = this.renderRoot.querySelector('#outlet') as HTMLElement;
+
+    const demos = (await fetch('./demos.json').then((r) => r.json())) as DemoData[];
+
+    this.demos = demos;
 
     const demoRoutes = demos.map(({ demo }) => {
       return {
@@ -97,7 +104,7 @@ class DemoApp extends LitElement {
   }
 
   private _onLocationChanged(e: CustomEvent) {
-    this.selected = demos.findIndex(({ demo }) => e.detail.location.pathname === `/${demo}`);
+    this.selected = this.demos.findIndex(({ demo }) => e.detail.location.pathname === `/${demo}`);
   }
 }
 
