@@ -2,22 +2,24 @@ import { LitElement, html } from 'lit-element';
 import { property } from 'lit-element/lib/decorators/property.js';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 
-import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
-import type { ComboBoxItemModel } from '@vaadin/vaadin-combo-box/@types/interfaces';
+import { comboBoxRenderer, ComboBoxModel } from '../renderers/combo-box-renderer';
 
 type User = { firstName: string; lastName: string };
 
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users: User[] = [];
 
-  private _boundItemRenderer = this._itemRenderer.bind(this);
-
   render() {
+    const item = (model: ComboBoxModel<User>) => {
+      const user = model.item;
+      return html`<i>${user.firstName} ${user.lastName}</i>`;
+    };
+
     return html`
       <vaadin-combo-box
         label="User"
         .items="${this.users}"
-        .renderer="${this._boundItemRenderer}"
+        .renderer="${comboBoxRenderer(item)}"
         item-value-path="lastName"
         item-label-path="lastName"
       ></vaadin-combo-box>
@@ -34,11 +36,6 @@ class ComboBoxRendererDemo extends LitElement {
       .then((data) => {
         this.users = data.result;
       });
-  }
-
-  _itemRenderer(root: HTMLElement, _comboBox: ComboBoxElement, model: ComboBoxItemModel) {
-    const user = model.item as User;
-    root.innerHTML = `<i>${user.firstName} ${user.lastName}</i>`;
   }
 }
 

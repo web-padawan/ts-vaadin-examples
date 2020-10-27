@@ -1,41 +1,33 @@
 import { LitElement, html } from 'lit-element';
 import { property } from 'lit-element/lib/decorators/property.js';
-import { render } from 'lit-html';
 import '@vaadin/vaadin-context-menu/vaadin-context-menu.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 import '@vaadin/vaadin-item/vaadin-item.js';
+
+import { renderer } from '../renderers/renderer';
 
 class ContextMenuRendererDemo extends LitElement {
   @property({ type: Array }) actions = ['Edit', 'Delete'];
 
   @property({ type: String }) selectedAction = '';
 
-  private _boundContextMenuRenderer = this._contextMenuRenderer.bind(this);
-
   render() {
+    const menu = () => html`
+      <vaadin-list-box>
+        ${this.actions.map(
+          (name) => html`<vaadin-item value="${name}" @click="${this._onItemClick}">
+            ${name}
+          </vaadin-item>`
+        )}
+      </vaadin-list-box>
+    `;
+
     return html`
-      <vaadin-context-menu .renderer="${this._boundContextMenuRenderer}">
+      <vaadin-context-menu .renderer="${renderer(menu, this.actions)}">
         <p>This paragraph has the context menu created using renderer function.</p>
       </vaadin-context-menu>
       <p>Selected action: ${this.selectedAction}</p>
     `;
-  }
-
-  _contextMenuRenderer(root: HTMLElement) {
-    let listBox = root.firstElementChild;
-    if (!listBox) {
-      render(html`<vaadin-list-box></vaadin-list-box>`, root);
-      listBox = root.firstElementChild;
-    }
-    render(
-      html`
-        ${this.actions.map((action) => {
-          return html`<vaadin-item @click="${this._onItemClick}">${action}</vaadin-item>`;
-        })}
-      `,
-      listBox as HTMLElement,
-      { eventContext: this } // bind event listener properly
-    );
   }
 
   _onItemClick(e: Event) {
