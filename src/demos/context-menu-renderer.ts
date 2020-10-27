@@ -1,4 +1,5 @@
-import { LitElement, html, property } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { property } from 'lit-element/lib/decorators/property.js';
 import { render } from 'lit-html';
 import '@vaadin/vaadin-context-menu/vaadin-context-menu.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
@@ -32,7 +33,7 @@ class ContextMenuRendererDemo extends LitElement {
           return html`<vaadin-item @click="${this._onItemClick}">${action}</vaadin-item>`;
         })}
       `,
-      listBox!,
+      listBox as HTMLElement,
       { eventContext: this } // bind event listener properly
     );
   }

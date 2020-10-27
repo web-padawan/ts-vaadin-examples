@@ -1,4 +1,5 @@
-import { LitElement, html, property } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { property } from 'lit-element/lib/decorators/property.js';
 import { render } from 'lit-html';
 import '@vaadin/vaadin-button/vaadin-button.js';
 import '@vaadin/vaadin-date-picker/vaadin-date-picker.js';

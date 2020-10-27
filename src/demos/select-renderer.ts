@@ -34,7 +34,7 @@ class SelectRendererDemo extends LitElement {
           return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
         })}
       `,
-      listBox!
+      listBox as HTMLElement
     );
   }
 }
