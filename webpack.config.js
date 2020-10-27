@@ -6,15 +6,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ENV = process.argv.find((arg) => arg.includes('production')) ? 'production' : 'development';
-const OUTPUT_PATH = ENV === 'production' ? resolve('dist') : resolve('src');
 const INDEX_TEMPLATE = resolve('./src/index.html');
 
 const commonConfig = merge([
   {
     entry: './src/index.ts',
     output: {
-      path: OUTPUT_PATH,
       filename: '[name].[chunkhash:8].js'
     },
     resolve: {
@@ -34,13 +31,14 @@ const commonConfig = merge([
 const developmentConfig = merge([
   {
     devtool: 'cheap-module-source-map',
+    mode: 'development',
     plugins: [
       new HtmlWebpackPlugin({
         template: INDEX_TEMPLATE
       })
     ],
     devServer: {
-      contentBase: OUTPUT_PATH,
+      contentBase: resolve('src'),
       compress: true,
       overlay: true,
       port: 3000,
@@ -56,13 +54,14 @@ const developmentConfig = merge([
 const productionConfig = merge([
   {
     devtool: 'nosources-source-map',
+    mode: 'production',
     plugins: [
       new CleanWebpackPlugin(),
       new CopyWebpackPlugin({
         patterns: [
           {
             from: resolve('src/demos.json'),
-            to: OUTPUT_PATH
+            to: resolve('dist')
           }
         ]
       }),
@@ -79,10 +78,10 @@ const productionConfig = merge([
   }
 ]);
 
-module.exports = (mode) => {
-  if (mode === 'production') {
-    return merge(commonConfig, productionConfig, { mode });
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    return merge(commonConfig, developmentConfig);
   }
 
-  return merge(commonConfig, developmentConfig, { mode });
+  return merge(commonConfig, productionConfig);
 };
