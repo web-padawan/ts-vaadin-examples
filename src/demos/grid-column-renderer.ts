@@ -1,4 +1,5 @@
-import { LitElement, property, html } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { property } from 'lit-element/lib/decorators/property.js';
 import { render } from 'lit-html';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-grid/vaadin-grid-filter.js';

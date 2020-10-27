@@ -1,4 +1,5 @@
-import { LitElement, html, property } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { property } from 'lit-element/lib/decorators/property.js';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
 
 import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
