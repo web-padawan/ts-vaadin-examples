@@ -5,7 +5,7 @@ import '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 import '@vaadin/vaadin-grid/vaadin-grid-sorter.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field.js';
 
-import { GridModel, gridRenderer } from '../renderers/grid-renderer';
+import { gridRenderer, GridRenderer } from '../renderers/grid-renderer';
 
 type User = {
   firstName: string;
@@ -16,21 +16,21 @@ type User = {
   };
 };
 
+type UserRenderer = GridRenderer<User>;
+
 class GridColumnRendererDemo extends LitElement {
   @property({ type: Array }) users: User[] = [];
 
   @property({ type: String }) filter = '';
 
   render() {
-    const index = (model: GridModel<User>) => html`<div>${model.index}</div>`;
+    const renderIndex: UserRenderer = (_item, model) => html`<div>${model.index}</div>`;
 
-    const name = (model: GridModel<User>) =>
-      html`<div>${model.item.firstName} ${model.item.lastName}</div>`;
+    const renderName: UserRenderer = (item) => html`<div>${item.firstName} ${item.lastName}</div>`;
 
-    const address = (model: GridModel<User>) =>
-      html`<span class="address">${model.item.address.street}, ${model.item.address.city}</span>`;
+    const renderAddress: UserRenderer = ({ address }) => html`${address.street}, ${address.city}`;
 
-    const email = (_model: GridModel<User>) => html`
+    const renderEmail = () => html`
       <vaadin-grid-sorter path="email">Email</vaadin-grid-sorter>
       <vaadin-grid-filter path="email" value="${this.filter}">
         <vaadin-text-field
@@ -48,22 +48,22 @@ class GridColumnRendererDemo extends LitElement {
           width="50px"
           flex-grow="0"
           header="#"
-          .renderer="${gridRenderer(index)}"
+          .renderer="${gridRenderer(renderIndex)}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           width="120px"
           header="Name"
-          .renderer="${gridRenderer(name)}"
+          .renderer="${gridRenderer(renderName)}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           header="Address"
-          .renderer="${gridRenderer(address)}"
+          .renderer="${gridRenderer(renderAddress)}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           path="email"
-          .headerRenderer="${gridRenderer(email, this.filter)}"
+          .headerRenderer="${gridRenderer(renderEmail, this.filter)}"
         ></vaadin-grid-column>
       </vaadin-grid>
     `;

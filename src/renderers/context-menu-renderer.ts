@@ -7,19 +7,14 @@ import {
   render,
   TemplateResult
 } from 'lit-html';
-import type { ComboBoxElement, ComboBoxItemModel } from '@vaadin/vaadin-combo-box';
+import type { ContextMenuElement, ContextMenuRendererContext } from '@vaadin/vaadin-context-menu';
 import { RendererBase } from './renderer-base';
 
-export interface ComboBoxModel<T> {
-  index: number;
-  item: T;
-}
-
-export type ComboBoxRenderer<T> = (item: T, model: ComboBoxModel<T>) => TemplateResult;
+export type ContextMenuRenderer<T> = (target: HTMLElement, detail: T) => TemplateResult;
 
 const noop = () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 
-class ComboBoxRendererDirective extends RendererBase {
+class ContextMenuRendererDirective extends RendererBase {
   constructor(part: PartInfo) {
     super();
     if (part.type !== PROPERTY_PART || part.name !== 'renderer') {
@@ -28,13 +23,16 @@ class ComboBoxRendererDirective extends RendererBase {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render<T>(renderer: ComboBoxRenderer<T>, _value?: unknown) {
+  render<T extends unknown>(renderer: ContextMenuRenderer<T>, _value?: unknown) {
     return renderer;
   }
 
-  update<T>(part: PropertyPart, [renderer, value]: [ComboBoxRenderer<T>, unknown]) {
+  update<T extends unknown>(
+    part: PropertyPart,
+    [renderer, value]: [ContextMenuRenderer<T>, unknown]
+  ) {
     if (this._initialize<T>(part, [renderer, value])) {
-      const element = part.element as ComboBoxElement;
+      const element = part.element as ContextMenuElement;
       const firstRender = this.isFirstRender();
 
       if (!this.hasChanged(value)) {
@@ -50,16 +48,13 @@ class ComboBoxRendererDirective extends RendererBase {
 
         element.renderer = (
           root: HTMLElement,
-          _comboBox: ComboBoxElement,
-          model: ComboBoxItemModel
+          _menu?: ContextMenuElement,
+          context?: ContextMenuRendererContext
         ) => {
-          render(
-            this.render<T>(renderer, value)(model.item as T, model as ComboBoxModel<T>),
-            root,
-            {
-              eventContext: host
-            }
-          );
+          const { detail, target } = context as ContextMenuRendererContext;
+          render(renderer(target, detail as T), root, {
+            eventContext: host
+          });
         };
       } else {
         element.render();
@@ -72,7 +67,7 @@ class ComboBoxRendererDirective extends RendererBase {
     return noop;
   }
 
-  private _initialize<T>(part: PropertyPart, [renderer, value]: [ComboBoxRenderer<T>, unknown]) {
+  private _initialize<T>(part: PropertyPart, [renderer, value]: [ContextMenuRenderer<T>, unknown]) {
     const { element } = part;
     if (element.isConnected) {
       return true;
@@ -84,8 +79,8 @@ class ComboBoxRendererDirective extends RendererBase {
   }
 }
 
-const rendererDirective = directive(ComboBoxRendererDirective);
+const rendererDirective = directive(ContextMenuRendererDirective);
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const comboBoxRenderer = <T>(renderer: ComboBoxRenderer<T>, value?: unknown) =>
-  rendererDirective(renderer as ComboBoxRenderer<unknown>, value);
+export const contextMenuRenderer = <T>(renderer: ContextMenuRenderer<T>, value?: unknown) =>
+  rendererDirective(renderer as ContextMenuRenderer<unknown>, value);
