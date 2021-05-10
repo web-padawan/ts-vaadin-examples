@@ -1,8 +1,6 @@
-import { LitElement, html } from 'lit-element';
-import { property } from 'lit-element/lib/decorators/property.js';
-import { query } from 'lit-element/lib/decorators/query.js';
+import { LitElement, html } from 'lit';
+import { property, query } from 'lit/decorators.js';
 import '@vaadin/vaadin-charts/vaadin-chart.js';
-
 import type { ChartElement } from '@vaadin/vaadin-charts';
 
 type Country = { name: string; population: number };

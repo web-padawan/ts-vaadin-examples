@@ -1,24 +1,23 @@
-import { LitElement, html } from 'lit-element';
-import { property } from 'lit-element/lib/decorators/property.js';
+import { LitElement, html } from 'lit';
+import { property } from 'lit/decorators.js';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
-
-import { comboBoxRenderer, ComboBoxRenderer } from '../renderers/combo-box-renderer';
+import { comboBoxRenderer, ComboBoxLitRenderer } from 'lit-vaadin-helpers';
 
 type User = { firstName: string; lastName: string };
 
-type UserRenderer = ComboBoxRenderer<User>;
+type UserRenderer = ComboBoxLitRenderer<User>;
 
 class ComboBoxRendererDemo extends LitElement {
   @property({ type: Array }) users: User[] = [];
 
-  render() {
-    const renderItem: UserRenderer = (user) => html`<i>${user.firstName} ${user.lastName}</i>`;
+  private renderItem: UserRenderer = (user) => html`<i>${user.firstName} ${user.lastName}</i>`;
 
+  render() {
     return html`
       <vaadin-combo-box
         label="User"
         .items="${this.users}"
-        .renderer="${comboBoxRenderer(renderItem)}"
+        .renderer="${comboBoxRenderer(this.renderItem)}"
         item-value-path="lastName"
         item-label-path="lastName"
       ></vaadin-combo-box>

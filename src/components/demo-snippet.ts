@@ -1,5 +1,5 @@
-import { LitElement, html, css, svg, TemplateResult } from 'lit-element';
-import { property } from 'lit-element/lib/decorators/property.js';
+import { LitElement, html, css, svg, TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
 
 import { prismStyles } from '../styles/prism-styles';
 

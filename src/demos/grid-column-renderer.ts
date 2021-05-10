@@ -1,11 +1,14 @@
-import { LitElement, html } from 'lit-element';
-import { property } from 'lit-element/lib/decorators/property.js';
+import { LitElement, html } from 'lit';
+import { property } from 'lit/decorators.js';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 import '@vaadin/vaadin-grid/vaadin-grid-sorter.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field.js';
-
-import { gridRenderer, GridRenderer } from '../renderers/grid-renderer';
+import {
+  columnBodyRenderer,
+  columnHeaderRenderer,
+  GridColumnBodyLitRenderer
+} from 'lit-vaadin-helpers';
 
 type User = {
   firstName: string;
@@ -16,54 +19,54 @@ type User = {
   };
 };
 
-type UserRenderer = GridRenderer<User>;
+type UserRenderer = GridColumnBodyLitRenderer<User>;
 
 class GridColumnRendererDemo extends LitElement {
   @property({ type: Array }) users: User[] = [];
 
   @property({ type: String }) filter = '';
 
+  private renderIndex: UserRenderer = (_item, model) => html`<div>${model.index}</div>`;
+
+  private renderName: UserRenderer = (item) => html`<div>${item.firstName} ${item.lastName}</div>`;
+
+  private renderAddress: UserRenderer = ({ address }) => html`${address.street}, ${address.city}`;
+
+  private renderEmail = () => html`
+    <vaadin-grid-sorter path="email">Email</vaadin-grid-sorter>
+    <vaadin-grid-filter path="email" value="${this.filter}">
+      <vaadin-text-field
+        slot="filter"
+        focus-target
+        theme="small"
+        @value-changed="${this._onFilterChange}"
+      ></vaadin-text-field>
+    </vaadin-grid-filter>
+  `;
+
   render() {
-    const renderIndex: UserRenderer = (_item, model) => html`<div>${model.index}</div>`;
-
-    const renderName: UserRenderer = (item) => html`<div>${item.firstName} ${item.lastName}</div>`;
-
-    const renderAddress: UserRenderer = ({ address }) => html`${address.street}, ${address.city}`;
-
-    const renderEmail = () => html`
-      <vaadin-grid-sorter path="email">Email</vaadin-grid-sorter>
-      <vaadin-grid-filter path="email" value="${this.filter}">
-        <vaadin-text-field
-          slot="filter"
-          focus-target
-          theme="small"
-          @value-changed="${this._onFilterChange}"
-        ></vaadin-text-field>
-      </vaadin-grid-filter>
-    `;
-
     return html`
       <vaadin-grid .items="${this.users}">
         <vaadin-grid-column
           width="50px"
           flex-grow="0"
           header="#"
-          .renderer="${gridRenderer(renderIndex)}"
+          .renderer="${columnBodyRenderer(this.renderIndex)}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           width="120px"
           header="Name"
-          .renderer="${gridRenderer(renderName)}"
+          .renderer="${columnBodyRenderer(this.renderName)}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           header="Address"
-          .renderer="${gridRenderer(renderAddress)}"
+          .renderer="${columnBodyRenderer(this.renderAddress)}"
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           path="email"
-          .headerRenderer="${gridRenderer(renderEmail, this.filter)}"
+          .headerRenderer="${columnHeaderRenderer(this.renderEmail, this.filter)}"
         ></vaadin-grid-column>
       </vaadin-grid>
     `;

@@ -1,8 +1,8 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from 'lit';
 import '@vaadin/vaadin-select/vaadin-select.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 import '@vaadin/vaadin-item/vaadin-item.js';
-import { renderer } from '../renderers/renderer';
+import { selectRenderer, SelectLitRenderer } from 'lit-vaadin-helpers';
 
 class SelectRendererDemo extends LitElement {
   get statuses(): Array<{ label: string; value: string }> {
@@ -13,17 +13,20 @@ class SelectRendererDemo extends LitElement {
     ];
   }
 
-  render() {
-    const listBox = () => html`
-      <vaadin-list-box>
-        ${this.statuses.map(({ label, value }) => {
-          return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
-        })}
-      </vaadin-list-box>
-    `;
+  private renderSelect: SelectLitRenderer = () => html`
+    <vaadin-list-box>
+      ${this.statuses.map(({ label, value }) => {
+        return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
+      })}
+    </vaadin-list-box>
+  `;
 
+  render() {
     return html`
-      <vaadin-select label="Status" .renderer=${renderer(listBox, this.statuses)}></vaadin-select>
+      <vaadin-select
+        label="Status"
+        .renderer=${selectRenderer(this.renderSelect, this.statuses)}
+      ></vaadin-select>
     `;
   }
 }

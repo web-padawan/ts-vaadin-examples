@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit-element';
-import { property } from 'lit-element/lib/decorators/property.js';
+import { LitElement, html, css } from 'lit';
+import { property } from 'lit/decorators.js';
 import { Router } from '@vaadin/router';
 import '@vaadin/vaadin-lumo-styles/color.js';
 import '@vaadin/vaadin-lumo-styles/spacing.js';
