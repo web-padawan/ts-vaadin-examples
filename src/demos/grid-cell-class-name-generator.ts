@@ -1,8 +1,7 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
-import type { GridItemModel } from '@vaadin/vaadin-grid';
-import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
+import type { GridColumnElement, GridItemModel } from '@vaadin/vaadin-grid';
 
 type User = {
   firstName: string;

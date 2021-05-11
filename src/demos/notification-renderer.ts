@@ -16,11 +16,11 @@ class NotificationRendererDemo extends LitElement {
       <vaadin-button @click=${this._toggle} theme="primary">Toggle</vaadin-button>
       <vaadin-notification
         .opened=${this.opened}
-        .renderer="${notificationRenderer(this.renderNotification, this.count)}"
         position="bottom-end"
         duration="-1"
         @opened-changed="${this._onOpenedChanged}"
         theme="primary"
+        ${notificationRenderer(this.renderNotification, this.count)}
       ></vaadin-notification>
     `;
   }

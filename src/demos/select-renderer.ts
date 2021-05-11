@@ -25,7 +25,7 @@ class SelectRendererDemo extends LitElement {
     return html`
       <vaadin-select
         label="Status"
-        .renderer=${selectRenderer(this.renderSelect, this.statuses)}
+        ${selectRenderer(this.renderSelect, this.statuses)}
       ></vaadin-select>
     `;
   }

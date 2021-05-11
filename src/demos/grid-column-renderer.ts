@@ -51,22 +51,22 @@ class GridColumnRendererDemo extends LitElement {
           width="50px"
           flex-grow="0"
           header="#"
-          .renderer="${columnBodyRenderer(this.renderIndex)}"
+          ${columnBodyRenderer(this.renderIndex)}
         ></vaadin-grid-column>
         <vaadin-grid-column
           width="120px"
           header="Name"
-          .renderer="${columnBodyRenderer(this.renderName)}"
+          ${columnBodyRenderer(this.renderName)}
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           header="Address"
-          .renderer="${columnBodyRenderer(this.renderAddress)}"
+          ${columnBodyRenderer(this.renderAddress)}
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           path="email"
-          .headerRenderer="${columnHeaderRenderer(this.renderEmail, this.filter)}"
+          ${columnHeaderRenderer(this.renderEmail, this.filter)}
         ></vaadin-grid-column>
       </vaadin-grid>
     `;

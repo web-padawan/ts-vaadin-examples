@@ -21,9 +21,9 @@ class DialogRendererDemo extends LitElement {
       <vaadin-button @click=${this._toggle} theme="primary">Toggle</vaadin-button>
       <vaadin-dialog
         .opened=${this.opened}
-        .renderer=${dialogRenderer(this.renderDialog)}
         modeless
         @opened-changed="${this._onOpenedChanged}"
+        ${dialogRenderer(this.renderDialog)}
       ></vaadin-dialog>
     `;
   }

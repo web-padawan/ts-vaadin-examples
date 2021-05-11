@@ -21,7 +21,7 @@ class GridRowDetailsDemo extends LitElement {
   @property({ type: Array }) users = [];
 
   @query('vaadin-grid')
-  private grid!: GridElement;
+  private grid!: GridElement<Person>;
 
   private renderDetails: FirstNameRenderer = (item) => html`Hi! My name is ${item.firstName}!`;
 
@@ -29,15 +29,10 @@ class GridRowDetailsDemo extends LitElement {
 
   render() {
     return html`
-      <vaadin-grid
-        .items="${this.users}"
-        .rowDetailsRenderer="${gridRowDetailsRenderer(this.renderDetails)}"
-      >
+      <vaadin-grid .items="${this.users}" ${gridRowDetailsRenderer(this.renderDetails)}>
         <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
         <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
-        <vaadin-grid-column
-          .renderer="${columnBodyRenderer(this.renderToggle)}"
-        ></vaadin-grid-column>
+        <vaadin-grid-column ${columnBodyRenderer(this.renderToggle)}></vaadin-grid-column>
       </vaadin-grid>
     `;
   }
@@ -57,10 +52,12 @@ class GridRowDetailsDemo extends LitElement {
   _toggle(event: CustomEvent) {
     const target = event.target as CheckboxElement;
     const context = this.grid.getEventContext(event) as GridEventContext<Person>;
-    if (target.checked) {
-      this.grid.openItemDetails(context.item);
-    } else {
-      this.grid.closeItemDetails(context.item);
+    if (context.item) {
+      if (target.checked) {
+        this.grid.openItemDetails(context.item);
+      } else {
+        this.grid.closeItemDetails(context.item);
+      }
     }
   }
 }

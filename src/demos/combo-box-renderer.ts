@@ -17,9 +17,9 @@ class ComboBoxRendererDemo extends LitElement {
       <vaadin-combo-box
         label="User"
         .items="${this.users}"
-        .renderer="${comboBoxRenderer(this.renderItem)}"
         item-value-path="lastName"
         item-label-path="lastName"
+        ${comboBoxRenderer(this.renderItem)}
       ></vaadin-combo-box>
     `;
   }

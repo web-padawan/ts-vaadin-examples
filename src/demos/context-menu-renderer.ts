@@ -15,7 +15,7 @@ class ContextMenuRendererDemo extends LitElement {
     <vaadin-list-box>
       ${this.actions.map(
         (name) => html`
-          <vaadin-item value="${name} ${target.id}" @click="${this._onItemClick}">
+          <vaadin-item .value="${name} ${target.id}" @click="${this._onItemClick}">
             ${name} ${target.id}
           </vaadin-item>
         `
@@ -25,7 +25,7 @@ class ContextMenuRendererDemo extends LitElement {
 
   render() {
     return html`
-      <vaadin-context-menu .renderer="${contextMenuRenderer(this.renderMenu, this.actions)}">
+      <vaadin-context-menu ${contextMenuRenderer(this.renderMenu, this.actions)}>
         <div id="1">First paragraph with the context-menu.</div>
         <div id="2">Second paragraph which uses the same context menu.</div>
       </vaadin-context-menu>
