@@ -5,8 +5,10 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const INDEX_TEMPLATE = resolve('./src/index.html');
+const TSCONFIG = resolve(__dirname, 'tsconfig.json');
 
 const commonConfig = merge([
   {
@@ -21,7 +23,11 @@ const commonConfig = merge([
       rules: [
         {
           test: /\.ts$/,
-          use: ['awesome-typescript-loader']
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+            experimentalWatchApi: true
+          }
         }
       ]
     }
@@ -35,6 +41,11 @@ const developmentConfig = merge([
     plugins: [
       new HtmlWebpackPlugin({
         template: INDEX_TEMPLATE
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        typescript: {
+          configFile: TSCONFIG
+        }
       })
     ],
     devServer: {
