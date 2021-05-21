@@ -1,4 +1,6 @@
-import { LitElement, html, css, svg, property, TemplateResult } from 'lit-element';
+import { LitElement, html, css, svg, TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
+
 import { prismStyles } from '../styles/prism-styles';
 
 const copyIcon = svg`<path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>`;

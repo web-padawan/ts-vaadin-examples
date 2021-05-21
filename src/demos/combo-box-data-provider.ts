@@ -1,6 +1,6 @@
-import { LitElement, html, query } from 'lit-element';
+import { LitElement, html } from 'lit';
+import { query } from 'lit/decorators.js';
 import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
-
 import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
 
 class ComboBoxDataProviderDemo extends LitElement {

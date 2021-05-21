@@ -1,12 +1,10 @@
-import { LitElement, html } from 'lit-element';
-import { render } from 'lit-html';
+import { LitElement, html } from 'lit';
 import '@vaadin/vaadin-select/vaadin-select.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 import '@vaadin/vaadin-item/vaadin-item.js';
+import { selectRenderer, SelectLitRenderer } from 'lit-vaadin-helpers';
 
 class SelectRendererDemo extends LitElement {
-  private _boundSelectRenderer = this._selectRenderer.bind(this);
-
   get statuses(): Array<{ label: string; value: string }> {
     return [
       { value: 'waiting', label: 'Waiting' },
@@ -15,27 +13,21 @@ class SelectRendererDemo extends LitElement {
     ];
   }
 
+  private renderSelect: SelectLitRenderer = () => html`
+    <vaadin-list-box>
+      ${this.statuses.map(({ label, value }) => {
+        return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
+      })}
+    </vaadin-list-box>
+  `;
+
   render() {
     return html`
-      <vaadin-select label="Status" .renderer=${this._boundSelectRenderer}></vaadin-select>
+      <vaadin-select
+        label="Status"
+        ${selectRenderer(this.renderSelect, this.statuses)}
+      ></vaadin-select>
     `;
-  }
-
-  _selectRenderer(root: HTMLElement) {
-    // only render list-box element once
-    let listBox = root.firstElementChild;
-    if (!listBox) {
-      render(html`<vaadin-list-box></vaadin-list-box>`, root);
-      listBox = root.firstElementChild;
-    }
-    render(
-      html`
-        ${this.statuses.map(({ label, value }) => {
-          return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
-        })}
-      `,
-      listBox!
-    );
   }
 }
 

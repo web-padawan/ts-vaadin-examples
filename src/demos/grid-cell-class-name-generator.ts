@@ -1,8 +1,17 @@
-import { LitElement, property, html } from 'lit-element';
+import { LitElement, html } from 'lit';
+import { property } from 'lit/decorators.js';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
+import type { GridColumnElement, GridItemModel } from '@vaadin/vaadin-grid';
 
-import type { GridItemModel } from '@vaadin/vaadin-grid';
-import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
+type User = {
+  firstName: string;
+  lastName: string;
+  address: {
+    phone: string;
+    city: string;
+  };
+  email: string;
+};
 
 class GridCellClassNameGeneratorDemo extends LitElement {
   @property({ type: Array }) users = [];
@@ -30,7 +39,7 @@ class GridCellClassNameGeneratorDemo extends LitElement {
       });
   }
 
-  cellClassGenerator(column: GridColumnElement, model: GridItemModel) {
+  cellClassGenerator(column: GridColumnElement<User>, model: GridItemModel<User>) {
     const isDark = column.path === 'lastName' || column.path === 'email';
     const classes = ['light', 'dark'];
     return model.index % 2 === 0 ? classes[Number(isDark)] : classes[Number(!isDark)];

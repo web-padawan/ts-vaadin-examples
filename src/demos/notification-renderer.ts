@@ -1,31 +1,28 @@
-import { LitElement, html, property } from 'lit-element';
-import { render } from 'lit-html';
+import { LitElement, html } from 'lit';
+import { property } from 'lit/decorators.js';
 import '@vaadin/vaadin-button/vaadin-button.js';
 import '@vaadin/vaadin-notification/vaadin-notification.js';
+import { notificationRenderer } from 'lit-vaadin-helpers';
 
 class NotificationRendererDemo extends LitElement {
   @property({ type: Boolean }) opened = false;
 
   @property({ type: Number }) count = 0;
 
-  private _boundNotificationRenderer = this._notificationRenderer.bind(this);
+  private renderNotification = () => html`Opened&nbsp;<b>${this.count}</b>&nbsp;times`;
 
   render() {
     return html`
       <vaadin-button @click=${this._toggle} theme="primary">Toggle</vaadin-button>
       <vaadin-notification
         .opened=${this.opened}
-        .renderer=${this._boundNotificationRenderer}
         position="bottom-end"
         duration="-1"
         @opened-changed="${this._onOpenedChanged}"
         theme="primary"
+        ${notificationRenderer(this.renderNotification, this.count)}
       ></vaadin-notification>
     `;
-  }
-
-  _notificationRenderer(root: HTMLElement) {
-    render(html`Notification opened&nbsp;<b>${this.count}</b>&nbsp;times`, root);
   }
 
   _onOpenedChanged(e: CustomEvent) {

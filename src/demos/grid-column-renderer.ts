@@ -1,13 +1,14 @@
-import { LitElement, property, html } from 'lit-element';
-import { render } from 'lit-html';
+import { LitElement, html } from 'lit';
+import { property } from 'lit/decorators.js';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-grid/vaadin-grid-filter.js';
 import '@vaadin/vaadin-grid/vaadin-grid-sorter.js';
 import '@vaadin/vaadin-text-field/vaadin-text-field.js';
-
-import type { GridItemModel } from '@vaadin/vaadin-grid';
-import type { GridColumnElement } from '@vaadin/vaadin-grid/vaadin-grid-column.js';
-import type { GridFilterElement } from '@vaadin/vaadin-grid/vaadin-grid-filter.js';
+import {
+  columnBodyRenderer,
+  columnHeaderRenderer,
+  GridColumnBodyLitRenderer
+} from 'lit-vaadin-helpers';
 
 type User = {
   firstName: string;
@@ -18,16 +19,30 @@ type User = {
   };
 };
 
+type UserRenderer = GridColumnBodyLitRenderer<User>;
+
 class GridColumnRendererDemo extends LitElement {
   @property({ type: Array }) users: User[] = [];
 
-  private _boundIndexRenderer = this._indexRenderer.bind(this);
+  @property({ type: String }) filter = '';
 
-  private _boundNameRenderer = this._nameRenderer.bind(this);
+  private renderIndex: UserRenderer = (_item, model) => html`<div>${model.index}</div>`;
 
-  private _boundAddressRenderer = this._addressRenderer.bind(this);
+  private renderName: UserRenderer = (item) => html`<div>${item.firstName} ${item.lastName}</div>`;
 
-  private _boundEmailHeaderRenderer = this._emailHeaderRenderer.bind(this);
+  private renderAddress: UserRenderer = ({ address }) => html`${address.street}, ${address.city}`;
+
+  private renderEmail = () => html`
+    <vaadin-grid-sorter path="email">Email</vaadin-grid-sorter>
+    <vaadin-grid-filter path="email" value="${this.filter}">
+      <vaadin-text-field
+        slot="filter"
+        focus-target
+        theme="small"
+        @value-changed="${this._onFilterChange}"
+      ></vaadin-text-field>
+    </vaadin-grid-filter>
+  `;
 
   render() {
     return html`
@@ -36,22 +51,22 @@ class GridColumnRendererDemo extends LitElement {
           width="50px"
           flex-grow="0"
           header="#"
-          .renderer="${this._boundIndexRenderer}"
+          ${columnBodyRenderer(this.renderIndex)}
         ></vaadin-grid-column>
         <vaadin-grid-column
           width="120px"
           header="Name"
-          .renderer="${this._boundNameRenderer}"
+          ${columnBodyRenderer(this.renderName)}
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           header="Address"
-          .renderer="${this._boundAddressRenderer}"
+          ${columnBodyRenderer(this.renderAddress)}
         ></vaadin-grid-column>
         <vaadin-grid-column
           auto-width
           path="email"
-          .headerRenderer="${this._boundEmailHeaderRenderer}"
+          ${columnHeaderRenderer(this.renderEmail, this.filter)}
         ></vaadin-grid-column>
       </vaadin-grid>
     `;
@@ -70,40 +85,7 @@ class GridColumnRendererDemo extends LitElement {
   }
 
   _onFilterChange(e: CustomEvent) {
-    const target = e.target as HTMLElement;
-    (target.parentNode as GridFilterElement).value = e.detail.value;
-  }
-
-  _indexRenderer(root: HTMLElement, _column: GridColumnElement, model: GridItemModel) {
-    render(html`<div>${model.index}</div>`, root);
-  }
-
-  _nameRenderer(root: HTMLElement, _column: GridColumnElement, model: GridItemModel) {
-    const user = model.item as User;
-    render(html`<div>${user.firstName} ${user.lastName}</div>`, root);
-  }
-
-  _addressRenderer(root: HTMLElement, _column: GridColumnElement, model: GridItemModel) {
-    const user = model.item as User;
-    render(html`<span class="address">${user.address.street}, ${user.address.city}</span>`, root);
-  }
-
-  _emailHeaderRenderer(root: HTMLElement) {
-    render(
-      html`
-        <vaadin-grid-sorter path="email">Email</vaadin-grid-sorter>
-        <vaadin-grid-filter path="email">
-          <vaadin-text-field
-            slot="filter"
-            focus-target
-            theme="small"
-            @value-changed="${this._onFilterChange}"
-          ></vaadin-text-field>
-        </vaadin-grid-filter>
-      `,
-      root,
-      { eventContext: this } // bind event listener properly
-    );
+    this.filter = e.detail.value;
   }
 }
 

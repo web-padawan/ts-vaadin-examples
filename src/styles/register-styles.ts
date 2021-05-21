@@ -1,5 +1,4 @@
-import { css } from 'lit-element';
-import { registerStyles } from '@vaadin/vaadin-themable-mixin/register-styles.js';
+import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles.js';
 
 registerStyles(
   'vaadin-grid',
