@@ -24,10 +24,10 @@ const commonConfig = merge([
       rules: [
         {
           test: /\.ts$/,
-          loader: 'ts-loader',
+          loader: 'esbuild-loader',
           options: {
-            transpileOnly: true,
-            experimentalWatchApi: true
+            loader: 'ts',
+            target: 'es2017'
           }
         }
       ]
