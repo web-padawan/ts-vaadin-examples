@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/dialog-renderer';
 import { source, title } from '../../docs/dialog-renderer.demo';
 

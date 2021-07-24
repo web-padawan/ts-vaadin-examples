@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/select-renderer';
 import { source, title } from '../../docs/select-renderer.demo';
 

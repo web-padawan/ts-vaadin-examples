@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/grid-row-details';
 import { source, title } from '../../docs/grid-row-details.demo';
 

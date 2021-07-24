@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/chart-configuration';
 import { source, title } from '../../docs/chart-configuration.demo';
 

@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/grid-cell-class-name-generator';
 import { source, title } from '../../docs/grid-cell-class-name-generator.demo';
 

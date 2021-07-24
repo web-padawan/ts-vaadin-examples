@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/notification-renderer';
 import { source, title } from '../../docs/notification-renderer.demo';
 

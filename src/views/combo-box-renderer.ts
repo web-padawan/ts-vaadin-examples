@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/combo-box-renderer';
 import { source, title } from '../../docs/combo-box-renderer.demo';
 

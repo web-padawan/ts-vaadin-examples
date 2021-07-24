@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-import '../components/demo-snippet';
-
 import '../demos/context-menu-renderer';
 import { source, title } from '../../docs/context-menu-renderer.demo';
 
