@@ -3,6 +3,7 @@
 const { resolve } = require('path');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -77,6 +78,11 @@ const productionConfig = merge([
     devtool: 'nosources-source-map',
     mode: 'production',
     optimization: {
+      minimizer: [
+        new ESBuildMinifyPlugin({
+          target: 'es2020'
+        })
+      ],
       runtimeChunk: {
         name: 'runtime'
       }
