@@ -15,7 +15,15 @@ const commonConfig = merge([
     entry: './src/index.ts',
     output: {
       path: resolve('./dist'),
-      filename: '[name].[chunkhash:8].js'
+      filename: '[name].[chunkhash:8].js',
+      library: {
+        type: 'module'
+      },
+      chunkLoading: 'import',
+      chunkFormat: 'module'
+    },
+    experiments: {
+      outputModule: true
     },
     resolve: {
       extensions: ['.ts', '.js']
@@ -41,6 +49,7 @@ const developmentConfig = merge([
     mode: 'development',
     plugins: [
       new HtmlWebpackPlugin({
+        inject: false,
         template: INDEX_TEMPLATE
       }),
       new ForkTsCheckerWebpackPlugin({
@@ -67,6 +76,11 @@ const productionConfig = merge([
   {
     devtool: 'nosources-source-map',
     mode: 'production',
+    optimization: {
+      runtimeChunk: {
+        name: 'runtime'
+      }
+    },
     plugins: [
       new CleanWebpackPlugin(),
       new CopyWebpackPlugin({
@@ -79,6 +93,7 @@ const productionConfig = merge([
       }),
       new HtmlWebpackPlugin({
         template: INDEX_TEMPLATE,
+        inject: false,
         minify: {
           collapseWhitespace: true,
           removeComments: true,
