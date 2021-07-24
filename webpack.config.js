@@ -36,7 +36,7 @@ const commonConfig = merge([
           loader: 'esbuild-loader',
           options: {
             loader: 'ts',
-            target: 'es2017'
+            target: 'es2020'
           }
         }
       ]
@@ -86,6 +86,18 @@ const productionConfig = merge([
       runtimeChunk: {
         name: 'runtime'
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|ts)$/,
+          use: [
+            {
+              loader: resolve('utils/minify-html-loader.js')
+            }
+          ]
+        }
+      ]
     },
     plugins: [
       new CleanWebpackPlugin(),
