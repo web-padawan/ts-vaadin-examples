@@ -78,6 +78,7 @@ const productionConfig = merge([
     devtool: 'nosources-source-map',
     mode: 'production',
     optimization: {
+      concatenateModules: false,
       minimizer: [
         new ESBuildMinifyPlugin({
           target: 'es2020'
