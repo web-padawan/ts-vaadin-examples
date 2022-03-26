@@ -3,7 +3,7 @@ import { property, query } from 'lit/decorators.js';
 import '@vaadin/vaadin-charts/vaadin-chart.js';
 import type { ChartElement } from '@vaadin/vaadin-charts';
 
-type Country = { name: string; population: number };
+type Country = { name: { common: string }; population: number };
 
 class ChartConfigurationDemo extends LitElement {
   @property({ type: Array }) categories: string[] = [];
@@ -22,7 +22,7 @@ class ChartConfigurationDemo extends LitElement {
   }
 
   get endpoint() {
-    return 'https://restcountries.eu/rest/v2';
+    return 'https://restcountries.com/v3.1';
   }
 
   get chartOptions() {
@@ -30,7 +30,7 @@ class ChartConfigurationDemo extends LitElement {
   }
 
   firstUpdated() {
-    fetch(`${this.endpoint}/all?fields=name;population`)
+    fetch(`${this.endpoint}/all?fields=name,population`)
       .then((r) => r.json())
       .then((data) => this.initChart(data));
   }
@@ -42,7 +42,7 @@ class ChartConfigurationDemo extends LitElement {
   }
 
   getCategories(countries: Country[]) {
-    return countries.map((country) => country.name);
+    return countries.map((country) => country.name.common);
   }
 
   getPopulation(countries: Country[]) {
