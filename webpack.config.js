@@ -17,9 +17,7 @@ const commonConfig = merge([
     output: {
       path: resolve('./dist'),
       filename: '[name].[chunkhash:8].js',
-      library: {
-        type: 'module'
-      },
+      module: true,
       chunkLoading: 'import',
       chunkFormat: 'module'
     },
@@ -60,14 +58,17 @@ const developmentConfig = merge([
       })
     ],
     devServer: {
-      contentBase: resolve('src'),
+      static: resolve('src'),
       compress: true,
-      overlay: true,
       port: 3000,
       host: '0.0.0.0',
       historyApiFallback: true,
+      hot: false,
       proxy: {
         '/api': 'http://localhost:8000'
+      },
+      client: {
+        overlay: true
       }
     }
   }
