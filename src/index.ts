@@ -1,14 +1,14 @@
 import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators.js';
 import { Router } from '@vaadin/router';
+import '@vaadin/app-layout';
+import '@vaadin/app-layout/vaadin-drawer-toggle.js';
+import '@vaadin/tabs';
 import '@vaadin/vaadin-lumo-styles/color.js';
 import '@vaadin/vaadin-lumo-styles/spacing.js';
 import '@vaadin/vaadin-lumo-styles/typography.js';
-import '@vaadin/vaadin-app-layout/vaadin-app-layout.js';
-import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle.js';
-import '@vaadin/vaadin-tabs/vaadin-tabs.js';
-import '@vaadin/vaadin-tabs/vaadin-tab.js';
 import './components/demo-snippet';
+import './styles/global-styles';
 import './styles/register-styles';
 
 type DemoData = { demo: string; title: string };
@@ -54,7 +54,7 @@ class DemoApp extends LitElement {
         <vaadin-drawer-toggle slot="navbar"></vaadin-drawer-toggle>
         <div class="title" slot="navbar">TypeScript Vaadin examples</div>
         <section slot="drawer">
-          <vaadin-tabs .selected="${this.selected}" orientation="vertical">
+          <vaadin-tabs .selected=${this.selected} orientation="vertical">
             ${this.demos.map(({ demo, title }) => {
               return html`
                 <vaadin-tab>

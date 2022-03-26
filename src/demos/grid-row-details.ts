@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
-import '@vaadin/vaadin-grid/vaadin-grid.js';
-import '@vaadin/vaadin-checkbox/vaadin-checkbox.js';
-import type { CheckboxElement } from '@vaadin/vaadin-checkbox';
-import type { GridElement, GridEventContext } from '@vaadin/vaadin-grid';
+import '@vaadin/grid';
+import '@vaadin/checkbox';
+import type { Checkbox } from '@vaadin/checkbox';
+import type { Grid, GridEventContext } from '@vaadin/grid';
 import {
   columnBodyRenderer,
   gridRowDetailsRenderer,
@@ -21,15 +21,15 @@ class GridRowDetailsDemo extends LitElement {
   @property({ type: Array }) users = [];
 
   @query('vaadin-grid')
-  private grid!: GridElement<Person>;
+  private grid!: Grid<Person>;
 
   private renderDetails: FirstNameRenderer = (item) => html`Hi! My name is ${item.firstName}!`;
 
-  private renderToggle = () => html`<vaadin-checkbox @change="${this._toggle}"></vaadin-checkbox>`;
+  private renderToggle = () => html`<vaadin-checkbox @change=${this._toggle}></vaadin-checkbox>`;
 
   render() {
     return html`
-      <vaadin-grid .items="${this.users}" ${gridRowDetailsRenderer(this.renderDetails)}>
+      <vaadin-grid .items=${this.users} ${gridRowDetailsRenderer(this.renderDetails)}>
         <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
         <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
         <vaadin-grid-column ${columnBodyRenderer(this.renderToggle)}></vaadin-grid-column>
@@ -50,7 +50,7 @@ class GridRowDetailsDemo extends LitElement {
   }
 
   _toggle(event: CustomEvent) {
-    const target = event.target as CheckboxElement;
+    const target = event.target as Checkbox;
     const context = this.grid.getEventContext(event) as GridEventContext<Person>;
     if (context.item) {
       if (target.checked) {

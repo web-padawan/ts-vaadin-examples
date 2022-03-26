@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import '@vaadin/vaadin-grid/vaadin-grid.js';
-import '@vaadin/vaadin-grid/vaadin-grid-filter.js';
-import '@vaadin/vaadin-grid/vaadin-grid-sorter.js';
-import '@vaadin/vaadin-text-field/vaadin-text-field.js';
+import '@vaadin/grid';
+import '@vaadin/grid/vaadin-grid-filter.js';
+import '@vaadin/grid/vaadin-grid-sorter.js';
+import '@vaadin/text-field';
 import {
   columnBodyRenderer,
   columnHeaderRenderer,
@@ -34,19 +34,19 @@ class GridColumnRendererDemo extends LitElement {
 
   private renderEmail = () => html`
     <vaadin-grid-sorter path="email">Email</vaadin-grid-sorter>
-    <vaadin-grid-filter path="email" value="${this.filter}">
+    <vaadin-grid-filter path="email" value=${this.filter}>
       <vaadin-text-field
         slot="filter"
         focus-target
         theme="small"
-        @value-changed="${this._onFilterChange}"
+        @value-changed=${this._onFilterChange}
       ></vaadin-text-field>
     </vaadin-grid-filter>
   `;
 
   render() {
     return html`
-      <vaadin-grid .items="${this.users}">
+      <vaadin-grid .items=${this.users}>
         <vaadin-grid-column
           width="50px"
           flex-grow="0"

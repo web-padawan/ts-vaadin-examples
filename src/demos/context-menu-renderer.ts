@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import '@vaadin/vaadin-context-menu/vaadin-context-menu.js';
-import '@vaadin/vaadin-list-box/vaadin-list-box.js';
-import '@vaadin/vaadin-item/vaadin-item.js';
-import type { ItemElement } from '@vaadin/vaadin-item';
+import '@vaadin/context-menu';
+import '@vaadin/item';
+import '@vaadin/list-box';
+import type { Item } from '@vaadin/item';
 import { contextMenuRenderer, ContextMenuLitRenderer } from 'lit-vaadin-helpers';
 
 class ContextMenuRendererDemo extends LitElement {
@@ -15,7 +15,7 @@ class ContextMenuRendererDemo extends LitElement {
     <vaadin-list-box>
       ${this.actions.map(
         (name) => html`
-          <vaadin-item .value="${name} ${target.id}" @click="${this._onItemClick}">
+          <vaadin-item .value="${name} ${target.id}" @click=${this._onItemClick}>
             ${name} ${target.id}
           </vaadin-item>
         `
@@ -34,7 +34,7 @@ class ContextMenuRendererDemo extends LitElement {
   }
 
   _onItemClick(e: Event) {
-    this.selectedAction = (e.target as ItemElement).value;
+    this.selectedAction = (e.target as Item).value;
   }
 }
 

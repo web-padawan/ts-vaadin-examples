@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit';
 import { query } from 'lit/decorators.js';
-import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
-import type { ComboBoxElement } from '@vaadin/vaadin-combo-box';
+import '@vaadin/combo-box';
+import type { ComboBox } from '@vaadin/combo-box';
 
 class ComboBoxDataProviderDemo extends LitElement {
   @query('vaadin-combo-box')
-  private comboBox!: ComboBoxElement;
+  private comboBox!: ComboBox;
 
   render() {
     return html`<vaadin-combo-box label="Country"></vaadin-combo-box>`;

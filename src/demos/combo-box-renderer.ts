@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import '@vaadin/vaadin-combo-box/vaadin-combo-box.js';
+import '@vaadin/combo-box';
 import { comboBoxRenderer, ComboBoxLitRenderer } from 'lit-vaadin-helpers';
 
 type User = { firstName: string; lastName: string };
@@ -16,7 +16,7 @@ class ComboBoxRendererDemo extends LitElement {
     return html`
       <vaadin-combo-box
         label="User"
-        .items="${this.users}"
+        .items=${this.users}
         item-value-path="lastName"
         item-label-path="lastName"
         ${comboBoxRenderer(this.renderItem)}

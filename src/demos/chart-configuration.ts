@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
-import '@vaadin/vaadin-charts/vaadin-chart.js';
-import type { ChartElement } from '@vaadin/vaadin-charts';
+import '@vaadin/charts';
+import type { Chart } from '@vaadin/charts';
 
 type Country = { name: { common: string }; population: number };
 
@@ -9,14 +9,14 @@ class ChartConfigurationDemo extends LitElement {
   @property({ type: Array }) categories: string[] = [];
 
   @query('vaadin-chart')
-  private chart!: ChartElement;
+  private chart!: Chart;
 
   render() {
     return html`
       <vaadin-chart
         title="Top countries by population"
-        .categories="${this.categories}"
-        .additionalOptions="${this.chartOptions}"
+        .categories=${this.categories}
+        .additionalOptions=${this.chartOptions}
       ></vaadin-chart>
     `;
   }
@@ -53,7 +53,7 @@ class ChartConfigurationDemo extends LitElement {
     return countries.sort((a, b) => (a.population > b.population ? -1 : 1)).slice(0, 10);
   }
 
-  _addSeries(chart: ChartElement, population: number[]) {
+  _addSeries(chart: Chart, population: number[]) {
     if (chart.configuration) {
       chart.configuration.addSeries({
         type: 'column',

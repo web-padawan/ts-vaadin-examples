@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import '@vaadin/vaadin-grid/vaadin-grid.js';
-import type { GridColumnElement, GridItemModel } from '@vaadin/vaadin-grid';
+import '@vaadin/grid';
+import type { GridCellClassNameGenerator } from '@vaadin/grid';
 
 type User = {
   firstName: string;
@@ -16,9 +16,15 @@ type User = {
 class GridCellClassNameGeneratorDemo extends LitElement {
   @property({ type: Array }) users = [];
 
+  private cellClassGenerator: GridCellClassNameGenerator<User> = (column, model) => {
+    const isDark = column.path === 'lastName' || column.path === 'email';
+    const classes = ['light', 'dark'];
+    return model.index % 2 === 0 ? classes[Number(isDark)] : classes[Number(!isDark)];
+  };
+
   render() {
     return html`
-      <vaadin-grid .items="${this.users}" .cellClassNameGenerator="${this.cellClassGenerator}">
+      <vaadin-grid .items=${this.users} .cellClassNameGenerator=${this.cellClassGenerator}>
         <vaadin-grid-column path="firstName" header="First name"></vaadin-grid-column>
         <vaadin-grid-column path="lastName" header="Last name"></vaadin-grid-column>
         <vaadin-grid-column path="address.phone" header="Phone"></vaadin-grid-column>
@@ -37,12 +43,6 @@ class GridCellClassNameGeneratorDemo extends LitElement {
       .then((data) => {
         this.users = data.result;
       });
-  }
-
-  cellClassGenerator(column: GridColumnElement<User>, model: GridItemModel<User>) {
-    const isDark = column.path === 'lastName' || column.path === 'email';
-    const classes = ['light', 'dark'];
-    return model.index % 2 === 0 ? classes[Number(isDark)] : classes[Number(!isDark)];
   }
 }
 

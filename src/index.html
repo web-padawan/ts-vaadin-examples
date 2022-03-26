@@ -26,9 +26,6 @@ This program is available under Apache License Version 2.0, available at https:/
   </head>
   <body>
     <demo-app></demo-app>
-    <custom-style>
-      <style include="lumo-color"></style>
-    </custom-style>
     <% for (index in htmlWebpackPlugin.files.js) { %>
     <script src="<%= htmlWebpackPlugin.files.js[index] %>" type="module"></script>
     <% } %>

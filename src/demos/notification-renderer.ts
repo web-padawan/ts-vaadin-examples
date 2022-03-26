@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import '@vaadin/vaadin-button/vaadin-button.js';
-import '@vaadin/vaadin-notification/vaadin-notification.js';
+import '@vaadin/button';
+import '@vaadin/notification';
 import { notificationRenderer } from 'lit-vaadin-helpers';
 
 class NotificationRendererDemo extends LitElement {
@@ -18,7 +18,7 @@ class NotificationRendererDemo extends LitElement {
         .opened=${this.opened}
         position="bottom-end"
         duration="-1"
-        @opened-changed="${this._onOpenedChanged}"
+        @opened-changed=${this._onOpenedChanged}
         theme="primary"
         ${notificationRenderer(this.renderNotification, this.count)}
       ></vaadin-notification>

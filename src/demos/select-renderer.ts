@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
-import '@vaadin/vaadin-select/vaadin-select.js';
-import '@vaadin/vaadin-list-box/vaadin-list-box.js';
-import '@vaadin/vaadin-item/vaadin-item.js';
+import '@vaadin/item';
+import '@vaadin/list-box';
+import '@vaadin/select';
 import { selectRenderer, SelectLitRenderer } from 'lit-vaadin-helpers';
 
 class SelectRendererDemo extends LitElement {
@@ -16,7 +16,7 @@ class SelectRendererDemo extends LitElement {
   private renderSelect: SelectLitRenderer = () => html`
     <vaadin-list-box>
       ${this.statuses.map(({ label, value }) => {
-        return html`<vaadin-item value="${value}">${label}</vaadin-item>`;
+        return html`<vaadin-item value=${value}>${label}</vaadin-item>`;
       })}
     </vaadin-list-box>
   `;
