@@ -5,7 +5,7 @@ import { source, title } from '../../docs/dialog-renderer.demo';
 class DialogRendererView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}" .name="${title}">
+      <demo-snippet .source=${source} .name=${title}>
         <dialog-renderer-demo></dialog-renderer-demo>
       </demo-snippet>
     `;

@@ -5,7 +5,7 @@ import { source, title } from '../../docs/combo-box-data-provider.demo';
 class ComboBoxDataProviderView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}" .name="${title}">
+      <demo-snippet .source=${source} .name=${title}>
         <combo-box-data-provider-demo></combo-box-data-provider-demo>
       </demo-snippet>
     `;

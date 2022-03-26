@@ -5,7 +5,7 @@ import { source, title } from '../../docs/combo-box-renderer.demo';
 class ComboBoxRendererView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}" .name="${title}">
+      <demo-snippet .source=${source} .name=${title}>
         <combo-box-renderer-demo></combo-box-renderer-demo>
       </demo-snippet>
     `;

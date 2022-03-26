@@ -5,7 +5,7 @@ import { source, title } from '../../docs/grid-cell-class-name-generator.demo';
 class GridCellClassNameGeneratorView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}" .name="${title}">
+      <demo-snippet .source=${source} .name=${title}>
         <grid-cell-class-name-generator-demo></grid-cell-class-name-generator-demo>
       </demo-snippet>
     `;

@@ -5,7 +5,7 @@ import { source, title } from '../../docs/notification-renderer.demo';
 class NotificationRendererView extends LitElement {
   render() {
     return html`
-      <demo-snippet .source="${source}" .name="${title}">
+      <demo-snippet .source=${source} .name=${title}>
         <notification-renderer-demo></notification-renderer-demo>
       </demo-snippet>
     `;

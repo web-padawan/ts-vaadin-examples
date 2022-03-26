@@ -112,7 +112,7 @@ class DemoSnippet extends LitElement {
           >
             <svg class="icon" viewBox="0 0 24 24" focusable="false">${githubIcon}</svg>
           </a>
-          <button class="button" @click="${this._onCopyClick}" aria-label="Copy">
+          <button class="button" @click=${this._onCopyClick} aria-label="Copy">
             <svg class="icon" viewBox="0 0 24 24" focusable="false">
               ${copied ? checkIcon : copyIcon}
             </svg>
