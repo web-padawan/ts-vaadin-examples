@@ -1,6 +1,6 @@
 # TypeScript Vaadin examples
 
-Examples of using Vaadin components with TypeScript.
+This repository is archived. Please check out TypeScript examples in [Vaadin documentation](https://vaadin.com/docs/latest/components).
 
 ## Overview
 
